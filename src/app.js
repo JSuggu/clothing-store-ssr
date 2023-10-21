@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const router = require("./routes/routes");
-const dbconnection = require("./models/dbconnection");
+const dbconnection = require("./controllers/db-connection");
 require("dotenv").config({path: "../.env"});
 
 const app = express();
@@ -21,5 +21,7 @@ app.use(express.static(`../${__dirname}/public`));
 app.use("/", router);
 
 app.listen(process.env.PORT, (req, res) => {
-    console.log("server start");
+    dbconnection.sync();
 });
+
+module.exports = app;
