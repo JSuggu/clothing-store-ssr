@@ -1,0 +1,638 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/***** GENERAL *****/
+h1, h3, span, a, input, label, button {
+    font-family: sans-serif;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+}
+
+span, a {
+    font-size: 14px;
+}
+
+body {
+    background-color: rgb(220, 220, 220);
+}
+
+/***** CONTENEDOR SUPERIOR *****/
+.top-container-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100px;
+    background-color: rgb(137, 202, 245);
+}
+
+.logo {
+    grid-area: "logo";
+    justify-self: flex-start;
+    display: flex;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.logo a {
+    font-size: 16px;
+}
+
+.search {
+    grid-area: "search";
+    justify-self: center;
+    width: 100%;
+}
+
+.login-checkin-cart {
+    grid-area: "login-checkin";
+    justify-self: flex-end;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-checkin-cart img {
+    width: 30px;
+    height: 30px;
+}
+
+.menu {
+    grid-area: "menu";
+    grid-row: 2/2;
+    grid-column: 2/3;
+    justify-self: flex-start;
+    display: flex;
+    gap: 20px;
+    
+}
+
+.top-container {
+    display: grid;
+    min-width: 710px;
+    width: 70%;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 45px 45px;
+    grid-template-areas: 
+        "logo search login-checkin"
+        "menu menu menu"
+    ;
+    row-gap: 10px;
+    margin: auto;
+    align-items: center;
+    height: 100px;
+    padding-top: 5px;
+}
+
+.logo-image {
+    width: 35px;
+    height: 35px;
+}
+
+.search-form input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);;
+}
+
+.search-form input:focus {
+    outline: 1px solid rgb(12, 12, 12);
+}   
+
+/***** CONTENEDOR PRINCIPAL *****/
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    align-items: center;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+/*** HOME ***/
+.home-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.home-container img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+/*** LOGIN AND CHECKIN ***/
+.login-checkin-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 50px;
+}
+
+.login-checkin-container h1 {
+    margin-top: 30px;
+}
+
+#user-icon {
+    display: none;
+}
+
+#login-icon, #checkin-icon {
+    display: flex;
+}
+
+.login, .checkin{
+    display: flex;
+    width: 500px;
+    height: 350px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.25);
+    justify-content: center;
+    align-content: center;
+}
+
+.checkin {
+    width: 500px;
+    height: 450px;
+}
+
+.login-form, .checkin-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.login-form section, .checkin-form section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    font-size: 16px;
+}
+
+.login-form input, .checkin-form input {
+    width: 350px;
+    height: 35px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(12, 12, 12);
+    border-radius: 5px;
+}
+
+.login-form .submit, .checkin-form .submit {
+    justify-self: center;
+    width: 150px;
+    transition: background-color 0.2ms;
+    background-color: rgb(137, 202, 245);
+    border: 1px solid;
+    border-radius: 3px 3px 3px 3px;
+    padding: 2px;
+}
+
+.submit:hover {
+    background-color: rgb(91, 175, 231);
+    cursor: pointer;
+}
+
+/*** USUARIO ***/
+.user-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+}
+
+.title {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-data img{
+    width: 200px;
+    height: 200px;
+}
+
+.user-data span {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.sign-off {
+    width: 200px;
+    height: 30px;
+    background-color: rgb(137, 202, 245);
+    border: 1px solid;
+    border-radius: 3px 3px 3px 3px;
+    padding: 2px;
+    transition: background-color 0.2ms;
+    margin-top: 5px;
+}
+
+.sign-off:hover {
+    background-color: rgb(91, 175, 231);
+    cursor: pointer;
+}
+
+/*** PRODUCTOS ***/
+.filters-products-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+}
+
+.filters h1 {
+    font-size: 20px;
+}
+
+.product-title {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.add-button {
+    width: 200px;
+    margin-left: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.2ms;
+    border: 1px solid;
+    border-radius: 3px 3px 3px 3px;
+    padding: 2px;
+}
+
+.add-button:hover {
+    background-color: rgb(204, 233, 253);
+    cursor: pointer;
+}
+
+.filters-and-products {
+    display: flex;
+    min-width: 708px;
+    max-width: 100%;
+    justify-content: space-between;
+    background-color: rgb(220, 220, 220);
+    gap: 50px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 500px;
+    gap: 30px;
+}
+
+.colors, .sizes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: capitalize;
+}
+
+.products {
+    display: grid;
+    width: 90%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin-bottom: 200px;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+
+.clothe {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px 10px 10px 10px;
+    gap: 10px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255, 255, 255);
+}
+
+.clothe-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    align-self: center;
+    gap: 10px;
+}
+
+.clothe-image {
+    width: 100%;
+    border-radius: 10px;
+    height: 200px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.clothe span {
+    text-transform: capitalize;
+}
+
+.clothe-name {
+    font-size: 20px;
+}
+
+.clothe-price {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.buttons {
+    align-self: center;
+}
+
+.add-to-shopping-cart {
+    width: 150px;
+    height: 25px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.modify-clothe, .delete-clothe {
+    margin-bottom: 10px;   
+}
+
+.modify-clothe:hover, .delete-clothe:hover {
+    cursor: pointer;
+}
+
+/*Formularios para hacer inserciones y modificaciones a los productos*/
+.clothes-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(204, 233, 253);
+    border: 1px solid rgb(137, 202, 245);
+    border-radius: 1%;
+    min-width: 30%;
+    min-height: 70%;
+}
+
+.form-container h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.clothe-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.clothe-form input {
+    margin-bottom: 10px;
+}
+
+.close-form {
+    align-self: flex-end;
+}
+
+.close-form:hover {
+    cursor: pointer;
+}
+
+#send-form {
+    margin-top: 20px;
+}
+
+.products-data-available {
+    display: flex;
+    width: 100%;
+    max-width: 576px;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.products-data-available span:first-child {
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+/*** SHOPPING CART ***/
+.shopping-cart-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+}
+
+.shopping-cart-container h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.added-clothe {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    width: 100%;
+    column-gap: 30px;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+.clothe-image-chosen {
+    width: 100px;
+    height: 100px;
+}
+
+.clothe-name-chosen {
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.clothe-price-chosen, .clothe-amount {
+    font-size: 16px;
+}
+
+.delete-of-shopping-cart {
+    width: 100px;
+    height: 50px;
+}
+
+.purchase-container {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: 20px;
+}
+
+.total-pay {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.purchase {
+    width: 100px;
+    height: 50px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1280px){
+    .products {
+        width: 90%;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 20px;
+        padding-left: 0px;
+        justify-content: center;
+        margin-bottom: 550px;
+    }
+}
+
+/***** SMARTPHONE-MEDIA-QUERIES *****/
+@media screen and (max-width: 480px)  {
+
+    /* NAVBAR */
+    .top-container {
+        min-width: 340px;
+        max-width: 100%;
+    }
+    
+    /* FILTROS DE PRODUCTOS */
+    .filters-products-container h1 {
+        margin-bottom: 20px;
+    }
+
+    .add-button {
+        margin-left: 0px;
+        margin-bottom: 50px;
+        align-self: center;
+    }
+
+    .filters-and-products {
+        min-width: 340px;
+        max-width: 100%;
+        flex-direction: column;
+    }
+
+    .filters {
+        min-width: 340px;
+        max-width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0px;
+        border:  none;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .filters label {
+        font-size: 14px;
+    }
+
+    .choice {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+    }  
+
+    /* PRODUCTOS */
+
+    .products {
+        width: 100%;
+        grid-template-columns: 40% 40%;
+        column-gap: 5%;
+        row-gap: 20px;
+        padding-left: 0px;
+        margin-top: 0px;
+        justify-content: center;
+        margin-bottom: 900px;
+    }
+
+    .clothe {
+        gap: 2px;
+    }
+
+    .clothe span {
+        font-size: 14px;
+    }
+
+    /*Formulario para añadir productos*/
+    .clothes-form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0px auto;
+    }
+
+    .form-container {
+        width: 300px;
+        min-height: 70%;
+    }
+
+    .products-data-available {
+        max-width: 290px;
+        margin-left: 10px;
+    }
+    
+    .products-data-available span:first-child {
+        align-self: center;
+        margin-bottom: 5px;
+    }
+}

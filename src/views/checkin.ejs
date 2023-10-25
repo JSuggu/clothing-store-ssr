@@ -1,0 +1,34 @@
+<%- include("templates/head") %>
+    <body>
+        <%- include ("templates/menu") %>
+        <div class="main-container">
+            <h1>Registrarse</h1>
+            <section class="checkin">
+                <form class="checkin-form">
+                    <section>
+                        <label for="names">Nombres </label>
+                        <input type="text" name="names" id="names" required>
+                    </section>
+
+                    <section>
+                        <label for="user-name">Nombre de Usuario </label>
+                        <input type="text" name="user" id="user-name" required>
+                    </section>
+                    
+                    <section>
+                        <label for="password">Contrseña </label>
+                        <input type="password" name="password" id="password" required>
+                    </section>
+                    
+                    <section>
+                        <label for="email">Correo Electronico </label>
+                        <input type="email" name="email" id="email" required> 
+                    </section>
+                    
+                    <input type="submit" value="Registrarse" class="submit">
+                </form>
+            </section>
+        </div>
+        <%- include("templates/footer") %>
+    </body>
+</html>

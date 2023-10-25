@@ -12,7 +12,7 @@ const queries = {
         //COLORES DE LAS ROPAS
         colors: async function(_, res){
             const allColors = await ClothesColor.findAll();
-            return res.status(200).send({allColors});
+            return allColors;
         },
     
         addColor: async function(req, res){
@@ -37,7 +37,7 @@ const queries = {
         //TIPOS DE ROPA
         types: async function(_, res){
             const allTypes = await ClothesType.findAll();
-            return res.status(200).send({allTypes});
+            return allTypes;
         },
     
         addType: async function(req, res){
@@ -61,7 +61,7 @@ const queries = {
 
         sizes: async function(_, res){
             const allSizes = await ClothesSize.findAll();
-            return res.status(200).send({allSizes});
+            return allSizes;
         },
 
         addSize: async function(req, res){
@@ -85,9 +85,12 @@ const queries = {
     
         //PARA LOS PRODUCTOS
         products: async function(req, res){
-            const clotheType = req.params.kinds;
-            
-            if(!invalidData.has(clotheType) && clotheType != "none"){
+            const clotheType = req.query.type;
+            const sizes = (await queries.sizes()).map(clothe => clothe.dataValues);
+            const colors = (await queries.colors()).map(clothe => clothe.dataValues);
+            const currentUrl = req.url;
+
+            if(!invalidData.has(clotheType) && clotheType != ""){
                 const type = await ClothesType.findOne({
                     where: {
                         type_name: clotheType
@@ -95,8 +98,8 @@ const queries = {
                 }).catch(err => {return err})
                 
                 if(!type)
-                    return res.status(400).send("El tipo de ropa no existe");
-
+                    return res.status(400).render("products", {message: "El tipo de ropa elegido no existe"});
+                
                 const allProductsFiltered = await Clothes.findAll({
                     include: [
                         {
@@ -119,8 +122,10 @@ const queries = {
                         type_id: type.id
                     }
                 });
+
+
                 
-                return res.status(200).send({allProducts: allProductsFiltered});
+                return res.render("products", {allProducts: allProductsFiltered, colors, sizes, type: type.dataValues.type_name});
             }
 
             const allProducts = await Clothes.findAll({
@@ -143,7 +148,7 @@ const queries = {
                 attributes: ["id", "clothe_name", "price", "url"]
             });
 
-            return res.status(200).send({allProducts});
+            return res.render("products",{allProducts, colors, sizes, type});
         },
     
         //Completar esta funcion para color y tipo representen un id de sus respectivas tablas

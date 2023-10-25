@@ -1,0 +1,39 @@
+<%- include("templates/head") %>
+    <body>
+        <%- include("templates/menu") %>
+        <div class="main-container">
+            <h1 class="product-title"><%= type %></h1>
+            <div class="filters-and-products">
+                <section class = "filters">
+                    <div class="colors">
+                        <h3>Colors</h3>
+                        <% colors.forEach(color => { %>
+                            <a href=""><%= color.color_name%></a>
+                        <% }) %>
+                    </div>
+                    <div class="sizes">
+                        <h3>Talles</h3>
+                        <% sizes.forEach(size => { %>
+                            <a href=""><%= size.size %></a>
+                        <% }) %>
+                    </div>
+                </section>
+                <section class = "products">
+                    <% allProducts.forEach(clothe => { %>
+                        <div class= "clothe">
+                            <img class = "clothe-image" src=<%= clothe.url %> alt="Producto">
+                            <section class= "clothe-data-container">
+                                <span class= "clothe-name"><%= clothe.clothe_name %></span>
+                                <span class= "clothe-price"><%= clothe.price %></span>
+                                <span class= "clothe-type" title="${type}"></span>
+                                <span class= "clothe-color" title="${arrayColors}"></span>
+                                <span class= "clothe-size" title="${arraySizes}"></span>
+                            </section>
+                        </div>
+                    <% }) %>
+                </section>
+            </div>
+        </div>
+        <%- include("templates/footer") %>
+    </body>
+</html>

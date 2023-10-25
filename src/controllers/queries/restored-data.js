@@ -67,7 +67,7 @@ const queries = {
 }
 
 const insertClothes = async () => {
-    const clotheFile = readline.createInterface(fs.createReadStream(path.resolve(__dirname, "../../files/clothe-list.svg")));
+    const clotheFile = readline.createInterface(fs.createReadStream(path.resolve(__dirname, "../../../files/clothe-list.svg")));
     const clothes = [], clothesColor = [], clothesSize = [];
 
     clotheFile.on("line", async (line) => {
