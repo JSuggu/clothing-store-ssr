@@ -50,6 +50,7 @@ router.delete("/api/delete/user/:id?", verifyToken.customer, userQueries.deleteU
 
 //RUTAS PARA PRODUCTOS
 router.get("/products", productsQueries.products);
+router.get("/leaked-products", productsQueries.productsFiltered);
 router.post("/api/add/product", verifyToken.admin, productsQueries.addProduct);
 router.put("/api/modify/product/:id", verifyToken.admin, productsQueries.modifyProduct);
 router.delete("/api/delete/product/:id", verifyToken.admin, productsQueries.deleteProduct);

@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 const router = require("./src/routes/routes");
@@ -27,8 +28,8 @@ app.use(
 
 //SERVER
 app.set("view engine", "ejs");
-app.set("views", `${__dirname}/src/views`);
-app.use(express.static(`public`));
+app.set("views", path.join(__dirname, "/src/views"));
+app.use(express.static("public"));
 app.use("/", router);
 
 

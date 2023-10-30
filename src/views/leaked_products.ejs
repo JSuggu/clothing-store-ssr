@@ -2,15 +2,15 @@
     <body>
         <%- include("templates/menu") %>
         <div class="main-container">
-            <h1 class="product-title"><%= type %></h1>
+            <h1 class="title"><%= type %></h1>
             <div class="filters-and-products">
                 <form class = "filters" method="get" action="leaked-products?type=<%=type%>">
-                    <input type="radio" name="type" id="type" value="<%=type%>" checked>
+                    <input type="radio" name="type" id="type-l" value="<%=type%>" checked>
                     <div class="colors">
                         <h3>Colors</h3>
                         <% colors.forEach(color => { %>
                             <section class="options">
-                                <input type="radio" name="color" id="color" value=<%= color.color_name %>>
+                                <input type="radio" name="color" id="color-l" value=<%= color.color_name %>>
                                 <label for="color"><%= color.color_name %></label>
                             </section>
                         <% }) %>
@@ -20,7 +20,7 @@
                             <h3>Talles</h3>
                             <% sizes.forEach(size => { %>
                                 <section class="options">
-                                    <input type="radio" name="size" id="size" value=<%= size.size %>>
+                                    <input type="radio" name="size" id="size-l" value=<%= size.size %>>
                                     <label for="size"><%= size.size %></label>
                                 </section>
                             <% }) %>
