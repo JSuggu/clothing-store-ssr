@@ -109,7 +109,7 @@ const queries = {
     },
 
     login: async function(req, res){
-        let authorized = req.session.authorized;
+        const authorized = req.session.authorized;
         
         if(req.session.user)
             return res.redirect("user", {authorized});
@@ -137,10 +137,12 @@ const queries = {
             return res.status(401).render("login", {message: "El usuario o la contraseña son incorrectos", authorized});
 
         req.session.user = user.user_name;
+        req.session.names = user.names;
+        req.session.email = user.email;
+        req.session.password = "********";
         req.session.authorized = "true";
-        authorized = req.session.authorized;
 
-        return res.status(200).render("user", {user: user, message:"Logueado correctamente", authorized});
+        return res.redirect("user");
     },
 
     //consultas para hacer modificaciones a los datos del usuario

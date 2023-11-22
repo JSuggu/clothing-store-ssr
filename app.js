@@ -13,7 +13,7 @@ const app = express();
 
 //MIDDLEWARES
 app.use(express.urlencoded({extends:false}));
-app.use(express.json())
+app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors());
@@ -35,6 +35,7 @@ app.use(
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/src/views"));
 app.use(express.static("public"));
+
 app.use(session({
   secret: 'kicback',
   cookie: {
@@ -43,6 +44,7 @@ app.use(session({
     secure: false,
     sameSite: 'none'
   },
+  proxy: true,
   store: new SequelizeStore({
     db: sequelize,
   }),

@@ -50,7 +50,7 @@ body {
     width: 100%;
 }
 
-.login-checkin-cart {
+.login-checkin-user-cart{
     grid-area: "login-checkin";
     justify-self: flex-end;
     gap: 20px;
@@ -59,9 +59,9 @@ body {
     gap: 20px;
 }
 
-.login-checkin-cart img {
-    width: 30px;
-    height: 30px;
+.login-checkin-user-cart img {
+    width: 40px;
+    height: 40px;
 }
 
 .menu {

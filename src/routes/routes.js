@@ -7,40 +7,44 @@ const restoredQuerie = require("../controllers/queries/restored-data");
 
 //RUTA DE VISTAS
 router.get("", (req, res) => {
-    const authorized = req.session.authorized;
-    return res.render("home", {authorized});
+    return res.render("home", {authorized: req.session.authorized});
 })
 
 router.get("/", (req, res) => {
-    const authorized = req.session.authorized;
-    return res.render("home", {authorized});
+    return res.render("home", {authorized: req.session.authorized});
 })
 
 router.get("/user", (req, res) => {
-    const authorized = req.session.authorized;
-    return res.render("user", {authorized});
+    if(!req.session.user)
+        return res.redirect("login");
+    const userData = {
+        names: req.session.names,
+        email: req.session.email,
+        password: req.session.password
+    }
+    return res.render("user", {authorized: req.session.authorized, userData});
 });
 
 router.get("/login", (req, res) => {
-    const authorized = req.session.authorized;
-    return res.render("login", {message:"", authorized});
+    if(req.session.user)
+        return res.redirect("user");
+    return res.render("login", {message:"", authorized: req.session.authorized});
 })
 
 router.get("/checkin", (req, res) => {
-    const authorized = req.session.authorized;
-    return res.render("checkin", {authorized});
+    if(req.session.user)
+        return res.redirect("user");
+    return res.render("checkin", {authorized: req.session.authorized});
 })
 
 router.get("/shopping_cart", (req, res) => {
-    const authorized = req.session.authorized;
     if(req.session.user)
-        return res.render("shopping_cart", {authorized});
-    return res.render("login", {message:"", authorized});
+        return res.render("shopping_cart", {authorized: req.session.authorized});
+    return res.redirect("login");
 })
 
 router.get("/log_out", (req, res) => {
-    req.session.user = null;
-    req.session.authorized = null;
+    req.session.destroy();
     return res.redirect("login");
 });
 

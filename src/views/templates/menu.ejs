@@ -11,16 +11,19 @@
                 </form>
             </section>
         </div>
-        <div class="login-checkin-cart">
-            <%if(authorized){ %>
-                <a href="/user" id="user-icon">Usuario</a>
-                <a href="/shopping_cart"><img src="shopping-cart.svg" alt="shopping-cart"></a>
-            <% } else { %>
+
+        <%if(authorized == undefined){%>
+            <div class="login-checkin-user-cart">
                 <a href="/login" id="login-icon">Iniciar Sesión</a>
                 <a href="/checkin" id="checkin-icon">Registrarse</a>
-                <a href="/shopping_cart"><img src="shopping-cart.svg" alt="shopping-cart"></a>
-            <% } %>
-        </div>
+                <a href="/shopping_cart"><img src="shopping-cart.webp" alt="shopping-cart"></a>
+            </div>
+        <%} else { %>
+            <div class="login-checkin-user-cart">
+                <a href="/user" id="user-icon">Usuario</a>
+                <a href="/shopping_cart"><img src="shopping-cart.webp" alt="shopping-cart"></a>
+            </div>
+        <% } %>
         <div class="menu">
             <a href="/products?type=calzado">Calzados</a>
             <a href="/products?type=pantalon">Pantalones</a>
