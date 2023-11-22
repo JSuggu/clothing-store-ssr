@@ -1,6 +1,6 @@
 <%- include("templates/head") %>
     <body>
-        <%- include("templates/menu") %>
+        <%- include("templates/menu", {authorized}) %>
         <div class="main-container">
             <h1 class="title"><%= type %></h1>
             <div class="filters-and-products">

@@ -1,8 +1,6 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const Users = require("../../models/Users"); 
 const UsersRole = require("../../models/UsersRoles"); 
-const getKey = require("../get-users-keys");
 
 
 //Conjunto que uso para verificar en los condicionales si se ingreso algun tipo de dato que no es valido
@@ -111,10 +109,15 @@ const queries = {
     },
 
     login: async function(req, res){
-        const {userName, password} = req.body;
+        let authorized = req.session.authorized;
+        
+        if(req.session.user)
+            return res.redirect("user", {authorized});
 
-        if(invalidData.has(userName) || invalidData.has(password))
-            return res.status(401).send({message: "El usuario o la contraseña son incorrectos"});
+        const {username, password} = req.body;
+
+        if(invalidData.has(username) || invalidData.has(password))
+            return res.status(401).render("login", {message:"El usuario o la contraseña son incorrectos", authorized});
 
         const user = await Users.findOne({
             include: {
@@ -122,21 +125,22 @@ const queries = {
                 attributes: ["role_name", "priority"]
             },
             where: {
-                user_name: userName,
+                user_name: username,
             },
             attributes: ["id", "names", "user_name", "email", "password"]
         });
 
         if(invalidData.has(user))
-            return res.status(404).send({message:"El usuario o la contraseña son incorrectos"});
+            return res.status(404).render("login", {message:"El usuario o la contraseña son incorrectos", authorized});
 
         if(!await bcrypt.compare(password, user.password))
-            return res.status(401).send({message: "El usuario o la contraseña son incorrectos"});
-        
-        const key = getKey(user.users_role.role_name);
-        const token = jwt.sign(user.toJSON(), key, {expiresIn: "7d"});
+            return res.status(401).render("login", {message: "El usuario o la contraseña son incorrectos", authorized});
 
-        return res.status(200).send({user: user, token: token, message: "Usuario logeado correctamente"});
+        req.session.user = user.user_name;
+        req.session.authorized = "true";
+        authorized = req.session.authorized;
+
+        return res.status(200).render("user", {user: user, message:"Logueado correctamente", authorized});
     },
 
     //consultas para hacer modificaciones a los datos del usuario

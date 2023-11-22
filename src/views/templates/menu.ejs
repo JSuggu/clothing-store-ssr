@@ -12,10 +12,14 @@
             </section>
         </div>
         <div class="login-checkin-cart">
-            <a href="/login" id="login-icon">Iniciar Sesión</a>
-            <a href="/checkin" id="checkin-icon">Registrarse</a>
-            <a href="/user" id="user-icon">Usuario</a>
-            <a href="/shopping_cart"><img src="shopping-cart.svg" alt="shopping-cart"></a>
+            <%if(authorized){ %>
+                <a href="/user" id="user-icon">Usuario</a>
+                <a href="/shopping_cart"><img src="shopping-cart.svg" alt="shopping-cart"></a>
+            <% } else { %>
+                <a href="/login" id="login-icon">Iniciar Sesión</a>
+                <a href="/checkin" id="checkin-icon">Registrarse</a>
+                <a href="/shopping_cart"><img src="shopping-cart.svg" alt="shopping-cart"></a>
+            <% } %>
         </div>
         <div class="menu">
             <a href="/products?type=calzado">Calzados</a>

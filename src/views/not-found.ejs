@@ -1,8 +1,8 @@
 <%- include("templates/head") %>
     <body>
-        <%- include("templates/menu.ejs") %>
+        <%- include("templates/menu", {authorized}) %>
         <div class="main-container">
-            <h1>NOT FOUND THE CONTENT</h1>
+            <h1 class="title"><%=message%></h1>
         </div>
         <%- include("templates/footer") %>
     </body>

@@ -88,6 +88,7 @@ const queries = {
             const clotheType = req.query.type;
             const sizes = (await queries.sizes()).map(clothe => clothe.dataValues);
             const colors = (await queries.colors()).map(clothe => clothe.dataValues);
+            const authorized = req.session.authorized;
 
             if(!invalidData.has(clotheType) && clotheType != ""){
                 const type = await ClothesType.findOne({
@@ -97,7 +98,7 @@ const queries = {
                 }).catch(err => {return err})
                 
                 if(!type)
-                    return res.status(404).render("not-found", {message: "El tipo de ropa elegido no existe"});
+                    return res.status(404).render("not-found", {message: "El tipo de ropa elegido no existe", authorized});
                 
                 let allProductsFiltered = await Clothes.findAll({
                     include: [
@@ -122,7 +123,7 @@ const queries = {
                     }
                 });
                 
-                return res.status(200).render("products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name});
+                return res.status(200).render("products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, authorized});
             }
 
             const allProducts = await Clothes.findAll({
@@ -145,7 +146,7 @@ const queries = {
                 attributes: ["id", "clothe_name", "price", "url"]
             });
 
-            return res.status(400).render("not-found");
+            return res.status(400).render("not-found", {authorized});
         },
 
 
@@ -154,6 +155,7 @@ const queries = {
             const colors = (await queries.colors()).map(clothe => clothe.dataValues);
             const clotheType = req.query.type;
             const {color, size} = req.query;
+            const authorized = req.session.authorized;
             let allProductsFiltered = [];
 
             if(!invalidData.has(clotheType) && clotheType != ""){
@@ -164,7 +166,7 @@ const queries = {
                 }).catch(err => {return err})
                 
                 if(!type)
-                    return res.status(404).render("not-found", {message: "El tipo de ropa elegido no existe"});
+                    return res.status(404).render("not-found", {message: "El tipo de ropa elegido no existe", authorized});
                 
                 allProductsFiltered = await Clothes.findAll({
                     include: [
@@ -205,11 +207,11 @@ const queries = {
                     
                 })
                 
-                return res.status(200).render("leaked_products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name});
+                return res.status(200).render("leaked_products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, authorized});
 
             }
 
-            return res.status(400).render("not-found");
+            return res.status(400).render("not-found", {authorized});
         },
     
         //Completar esta funcion para color y tipo representen un id de sus respectivas tablas

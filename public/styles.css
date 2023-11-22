@@ -5,12 +5,15 @@
 }
 
 /***** GENERAL *****/
-h1, h3, span, a, input, label, button {
+h1, h2, h3, span, a, input, label, button {
     font-family: sans-serif;
     text-decoration: none;
-    text-transform: capitalize;
     color: rgb(0, 0, 0);
     letter-spacing: 1px;
+}
+
+h1, h2, h3, button{
+    text-transform: capitalize;
 }
 
 span, a {
@@ -143,11 +146,7 @@ body {
     margin-top: 30px;
 }
 
-#user-icon {
-    display: none;
-}
-
-#login-icon, #checkin-icon {
+#login-icon, #checkin-icon, #user-icon {
     display: flex;
 }
 
