@@ -68,10 +68,10 @@ router.put("/api/modify/password/:id?", userQueries.modifyPassword);
 router.put("/api/modify/email/:id?", userQueries.modifyEmail);
 router.delete("/api/delete/user/:id?", userQueries.deleteUser);
 
-
 //RUTAS PARA PRODUCTOS
 router.get("/products", productsQueries.products);
-router.get("/leaked-products", productsQueries.productsFiltered);
+router.get("/products/leaked-products", productsQueries.productsFiltered);
+router.get("/clothe/:id/:name", productsQueries.clothe);
 router.post("/api/add/product", productsQueries.addProduct);
 router.put("/api/modify/product/:id", productsQueries.modifyProduct);
 router.delete("/api/delete/product/:id", productsQueries.deleteProduct);
@@ -81,6 +81,11 @@ router.get("/api/shopping-cart", shoppingCartQueries.getProductsOfUser);
 router.post("/api/shopping-cart/add-product/:id", shoppingCartQueries.addProduct);
 router.delete("/api/shopping-cart/delete-product/:id", shoppingCartQueries.deleteProduct);
 router.delete("/api/shopping-cart/purchase", shoppingCartQueries.clearCart);
+
+//RUTA PARA COMPRAR
+router.get("/product/buy/:id", (req,res)=> {
+    res.redirect("products");
+});
 
 //RUTAS CREAR ROLES DE USUARIOS, COLORES Y TIPOS DE ROPA
 router.post("/api/add/user-role",userQueries.addRole);

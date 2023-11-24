@@ -4,12 +4,11 @@ const Clothes = require("../../models/Clothes");
 
 const queries = {
     getProductsOfUser: async function(req, res){
-        const token = req.decoded;
-        const userId = token.id;
+        const user = req.session.user;
 
         const isUser = await Users.findOne({
             where: {
-                id: userId
+                user: user
             }
         });
         
@@ -30,7 +29,7 @@ const queries = {
             ],
             
             where: {
-                userId: userId
+                userId: user.id
             }
             
         });
@@ -42,9 +41,7 @@ const queries = {
     },
 
     addProduct: async function(req, res){
-        const token = req.decoded;
         const productId = req.params.id;
-        const userId = token.id;
 
         const isProduct = await Clothes.findOne({
             where: {

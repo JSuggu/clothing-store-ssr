@@ -4,7 +4,7 @@
         <div class="main-container">
             <h1 class="product-title"><%= type %></h1>
             <div class="filters-and-products">
-                <form class = "filters" method="get" action="leaked-products?type=<%=type%>">
+                <form class = "filters" method="get" action="/products/leaked-products?type=<%=type%>">
                     <input type="radio" name="type" id="type" value="<%=type%>" checked>
                     <div class="colors">
                         <h3>Colors</h3>
@@ -30,15 +30,14 @@
                 </form>
                 <section class = "products">
                     <% allProducts.forEach(clothe => { %>
-                        <div class= "clothe">
-                            <img class = "clothe-image" src=<%= clothe.url %> alt="Producto">
-                            <section class= "clothe-data-container">
-                                <span class= "clothe-name"><%= clothe.clothe_name %></span>
-                                <span class= "clothe-price"><%= clothe.price %></span>
-                                <span class= "clothe-type" title="${type}"></span>
-                                <span class= "clothe-color" title="${arrayColors}"></span>
-                                <span class= "clothe-size" title="${arraySizes}"></span>
-                            </section>
+                        <div class= "clothe-card">
+                            <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
+                                <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
+                                <section class= "clothe-card-data-container">
+                                    <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
+                                    <span class= "clothe-card-price"><%= clothe.price %></span>
+                                </section>
+                            </a>
                         </div>
                     <% }) %>
                 </section>

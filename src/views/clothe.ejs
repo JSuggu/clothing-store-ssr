@@ -1,0 +1,54 @@
+<%- include("templates/head") %>
+    <body>
+        <%- include("templates/menu", {authorized}) %>
+        <div class="main-container">
+            <h1 class="product-title"><%= clothe.clothe_name%></h1>
+            <section class="clothe-data">
+                <div class="images-and-prices">
+                    <section class="clothe-images">
+                        <div class="clothe-image-container">
+                            <img src=<%= clothe.url%> alt=<%= clothe.clothe_name%>>
+                        </div>
+                    </section>
+                    <section class="clothe-prices-container">
+                        <div class="clothe-prices">
+                            <h2>Precio</h2>
+                            <span><%= clothe.price%></span>
+                        </div>
+                        <% if(authorized) {%>
+                            <div class="buy-cart-buttons">
+                                <a href="/api/shopping-cart/add-product/<%= clothe.id%>"><button>Agregar al Carrito</button></a>
+                                <a href="/product/buy/:id"><button>Comprar</button></a>
+                            </div>
+                        <% } else { %>
+                            <div class="buy-cart-buttons">
+                                <a href="/login"><button>Agregar al Carrito</button></a>
+                                <a href="/login"><button>Comprar</button></a>
+                            </div>
+                        <% } %>
+                    </section>
+                </div>
+                <div class="clothe-specs">
+                    <h2>Descripcion</h2>
+                    <section class="clothe-specs-type">
+                        <h3>Tipo</h3>
+                        <span><%= clothe.clothes_type.type_name %></span>
+                    </section>
+                    <section class="clothe-specs-colors">
+                        <h3>Colores</h3>
+                        <% clothe.clothes_colors.forEach(color => {%>
+                            <span><%= color.color_name%></span>
+                        <% }) %>
+                    </section>
+                    <section class="clothe-specs-sizes">
+                        <h3>Tamaños</h3>
+                        <% clothe.clothes_sizes.forEach(size => {%>
+                            <span><%= size.size%></span>
+                        <% }) %>
+                    </section>
+                </div>
+            </section>
+        </div>
+        <%- include("templates/footer") %>
+    </body>
+</html>

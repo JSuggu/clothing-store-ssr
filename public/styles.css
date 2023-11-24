@@ -119,6 +119,10 @@ body {
     gap: 50px;
 }
 
+.main-container h1 {
+    margin-top: 20px;
+}
+
 /*** HOME ***/
 .home-container {
     display: flex;
@@ -255,7 +259,7 @@ label {
     cursor: pointer;
 }
 
-/*** PRODUCTOS ***/
+/***** PRODUCTOS *****/
 .filters-products-container {
     display: flex;
     flex-direction: column;
@@ -283,7 +287,7 @@ label {
     cursor: pointer;
 }
 
-.filters-and-products {
+.filters-and-products{
     display: flex;
     min-width: 708px;
     max-width: 100%;
@@ -321,7 +325,8 @@ label {
     row-gap: 50px;
 }
 
-.clothe {
+/*** CARDS ***/
+.clothe-card {
     display: flex;
     width: 100%;
     height: auto;
@@ -333,16 +338,17 @@ label {
     background-color: rgb(255, 255, 255);
 }
 
-.clothe-data-container {
+.clothe-card-data-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 80%;
     align-self: center;
     gap: 10px;
+    padding: 5px;
 }
 
-.clothe-image {
+.clothe-card-image {
     width: 100%;
     border-radius: 10px;
     height: 200px;
@@ -350,15 +356,15 @@ label {
     object-fit: cover;
 }
 
-.clothe span {
+.clothe-card span {
     text-transform: capitalize;
 }
 
-.clothe-name {
+.clothe-card-name {
     font-size: 20px;
 }
 
-.clothe-price {
+.clothe-card-price {
     font-size: 24px;
     font-weight: bold;
 }
@@ -382,7 +388,73 @@ label {
     cursor: pointer;
 }
 
-/*Formularios para hacer inserciones y modificaciones a los productos*/
+/*** CLOTHE ***/
+.clothe-data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.images-and-prices {
+    display: flex;
+    width: 100%;
+    row-gap: 50px;
+    justify-content: center;
+}
+
+
+.clothe-prices span {
+    font-size: 20px;
+}
+
+.clothe-images {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    border-right: 1px black solid;
+}
+
+.clothe-images-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.clothe-images img {
+    width: 100%;
+    border-radius: 10px;
+    height: 300px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.clothe-prices-container {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    padding-left: 20px;
+    gap: 30px;
+}
+
+.buy-cart-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.buy-cart-buttons button {
+    width: 200px;
+    height: 50px;
+}
+
+.clothe-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/***** Formularios para hacer inserciones y modificaciones a los productos *****/
 .clothes-form-container {
     display: flex;
     flex-direction: column;

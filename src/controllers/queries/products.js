@@ -84,6 +84,36 @@ const queries = {
         },
     
         //PARA LOS PRODUCTOS
+
+        clothe: async function(req, res){
+            const clotheId = req.params.id;
+
+            const clothe = await Clothes.findOne({
+                include: [
+                    {
+                        model: ClothesType,
+                        attributes: ["type_name"]
+                    },
+
+                    {
+                        model: ClothesColor,
+                        attributes: ["color_name"]
+                    },
+                    
+                    {
+                        model: ClothesSize,
+                        attributes: ["size"]
+                    }
+                ],
+                attributes: ["id", "clothe_name", "price", "url"],
+                where: {
+                    id: clotheId
+                }
+            });
+
+            return res.render("clothe", {clothe, authorized: req.session.authorized});
+        },
+
         products: async function(req, res){
             const clotheType = req.query.type;
             const sizes = (await queries.sizes()).map(clothe => clothe.dataValues);
@@ -125,27 +155,7 @@ const queries = {
                 
                 return res.status(200).render("products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, authorized});
             }
-            /*
-            const allProducts = await Clothes.findAll({
-                include: [
-                    {
-                        model: ClothesType,
-                        attributes: ["type_name"]
-                    },
 
-                    {
-                        model: ClothesColor,
-                        attributes: ["color_name"]
-                    },
-                    
-                    {
-                        model: ClothesSize,
-                        attributes: ["size"]
-                    }
-                ],
-                attributes: ["id", "clothe_name", "price", "url"]
-            });
-            */
             return res.status(400).render("not-found", {authorized});
         },
 
