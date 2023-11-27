@@ -8,7 +8,7 @@ const queries = {
         const user = req.session.user;
 
         if(!user){
-            return res.render("shopping_cart", {authorized:req.session.authorized});
+            return res.render("shopping_cart", {authorized:req.session.authorized, products: []});
         }
 
         const isUser = await Users.findOne({
@@ -21,7 +21,7 @@ const queries = {
             return res.status(404).send({message:"El usuario no existe en la base de datos"});
 
 
-        const products = await sequelize.query(`SELECT users.names, clothes.clothe_name, clothes.price, clothes.url, shopping_carts.amount 
+        const products = await sequelize.query(`SELECT users.names, clothes.clothe_name, clothes.price, clothes.url, clothes.id, shopping_carts.amount 
             FROM clothes INNER JOIN shopping_carts ON shopping_carts.clotheId = clothes.id INNER JOIN users ON users.id = shopping_carts.userId 
             WHERE users.id = ${isUser.id};
         `);
@@ -56,7 +56,7 @@ const queries = {
         if(!isProduct)
             return res.status(404).send({message: "El producto que intenta agregar no existe"});
 
-        if(!isProduct)
+        if(!isUser)
             return res.status(404).send({message: "El usuario no esta conectado"});
 
         const isProductInCart = await ShoppingCarts.findOne({
@@ -91,14 +91,22 @@ const queries = {
     },
 
     deleteProduct: async function(req, res){
-        const token = req.decoded;
         const productId = req.params.id;
-        const userId = token.id;
+        const username = req.session.user;
+
+        const user = await Users.findOne({
+            where: {
+                user_name: username
+            }
+        });
+
+        if(!user)
+            return res.status(404).send({message: "Noy productos asociado a este usuario"});
 
         const isProduct = await ShoppingCarts.findOne({
             where: {
                 clotheId: productId,
-                userId: userId 
+                userId: user.id 
             }
         });
 
@@ -127,34 +135,31 @@ const queries = {
     },
 
     clearCart: async function(req, res){
-        const token = req.decoded;
-        const userId = token.id;
+        const username = req.session.user;
 
-        const priceProducts = await ShoppingCarts.findAll({
-            include: [
-                {
-                    model: Clothes,
-                    attributes: ["price"]
-                }
-            ],
-
+        const user = await Users.findOne({
             where: {
-                userId: userId
+                user_name: username
             }
         });
-        
+
+        if(!user) return res.status(400).send({message: "El usuario no esta conectado"});
+
+        const priceProducts = await sequelize.query(`SELECT clothes.price, shopping_carts.amount FROM clothes INNER JOIN shopping_carts 
+        ON clothes.id = shopping_carts.clotheId INNER JOIN users ON users.id = shopping_carts.userId WHERE userId = ${user.id}`);
+
         if(priceProducts.length === 0)
             return res.status(404).send({message: "La compra no se ha realizado porque no hay productos en el carrito"});
 
         let totalPay = 0;
 
-        priceProducts.forEach( element => {
-            totalPay = totalPay + element.amount * element.clothe.price;
+        priceProducts[0].forEach( clothe => {
+            totalPay = totalPay + clothe.amount * clothe.price;
         });
     
         const clearCart = await ShoppingCarts.destroy({
             where: {
-                userId: userId
+                userId: user.id
             }
         });
 
