@@ -1,47 +1,45 @@
-const ShoppingCart = require("../../models/ShoppingCart");
 const Users = require("../../models/Users");
 const Clothes = require("../../models/Clothes");
+const ShoppingCarts = require("../../models/ShoppingCarts");
+const sequelize = require("../db-connection");
 
 const queries = {
     getProductsOfUser: async function(req, res){
         const user = req.session.user;
 
+        if(!user){
+            return res.render("shopping_cart", {authorized:req.session.authorized});
+        }
+
         const isUser = await Users.findOne({
             where: {
-                user: user
+                user_name: user
             }
         });
         
         if(!isUser)
             return res.status(404).send({message:"El usuario no existe en la base de datos"});
 
-        const products = await ShoppingCart.findAll({
-            include: [
-                {
-                    model: Users,
-                    attributes: ["names"]
-                },
-                
-                {
-                    model: Clothes,
-                    attributes: ["name", "price", "url"]
-                }
-            ],
-            
-            where: {
-                userId: user.id
-            }
-            
-        });
+
+        const products = await sequelize.query(`SELECT users.names, clothes.clothe_name, clothes.price, clothes.url, shopping_carts.amount 
+            FROM clothes INNER JOIN shopping_carts ON shopping_carts.clotheId = clothes.id INNER JOIN users ON users.id = shopping_carts.userId 
+            WHERE users.id = ${isUser.id};
+        `);
 
         if(products.length === 0)
             return res.status(404).send({message:"No tiene ningun producto agregado en el carrito"});
 
-        return res.status(200).send({products});
+        let totalPay = 0;
+        products[0].forEach(clothe => {
+            totalPay += clothe.price*clothe.amount;
+        })
+
+        return res.render("shopping_cart", {products: products[0], totalPay, authorized:req.session.authorized});
     },
 
     addProduct: async function(req, res){
         const productId = req.params.id;
+        const user = req.session.user;
 
         const isProduct = await Clothes.findOne({
             where: {
@@ -49,13 +47,22 @@ const queries = {
             }
         });
 
+        const isUser = await Users.findOne({
+            where: {
+                user_name: user
+            }
+        })
+
         if(!isProduct)
             return res.status(404).send({message: "El producto que intenta agregar no existe"});
 
-        const isProductInCart = await ShoppingCart.findOne({
+        if(!isProduct)
+            return res.status(404).send({message: "El usuario no esta conectado"});
+
+        const isProductInCart = await ShoppingCarts.findOne({
             where: {
                 clotheId: productId,
-                userId: userId 
+                userId: isUser.id 
             }
         }).catch (err => {
             return err;
@@ -64,7 +71,7 @@ const queries = {
         if(isProductInCart){
             const productAmount = isProductInCart.amount;
             
-            const updatedProductAmount = await ShoppingCart.update({amount: productAmount+1}, {
+            const updatedProductAmount = await ShoppingCarts.update({amount: productAmount+1}, {
                 where: {
                     id: isProductInCart.id
                 }
@@ -73,15 +80,14 @@ const queries = {
             return res.status(201).send({updatedProductAmount, message: "Ha agregado el mismo producto y se actualizo la cantidad"});
         }
         
-        const addedProduct = await ShoppingCart.create({
+        const addedProduct = await ShoppingCarts.create({
             amount: 1,
-            userId: userId,
+            userId: isUser.id,
             clotheId: productId,
 
         });
         
         return res.status(201).send({addedProduct, message: "Producto añadido"});
-        
     },
 
     deleteProduct: async function(req, res){
@@ -89,7 +95,7 @@ const queries = {
         const productId = req.params.id;
         const userId = token.id;
 
-        const isProduct = await ShoppingCart.findOne({
+        const isProduct = await ShoppingCarts.findOne({
             where: {
                 clotheId: productId,
                 userId: userId 
@@ -102,7 +108,7 @@ const queries = {
         const productAmount = isProduct.amount;
 
         if(productAmount === 1){
-            const deleteProduct = await ShoppingCart.destroy({
+            const deleteProduct = await ShoppingCarts.destroy({
                 where: {
                     id: isProduct.id
                 }
@@ -111,7 +117,7 @@ const queries = {
             return res.status(200).send({deleteProduct, message: "El producto fue eliminado"});
         }
 
-        const updatedProductAmount = await ShoppingCart.update({amount: productAmount-1}, {
+        const updatedProductAmount = await ShoppingCarts.update({amount: productAmount-1}, {
             where: {
                 id: isProduct.id
             }
@@ -124,7 +130,7 @@ const queries = {
         const token = req.decoded;
         const userId = token.id;
 
-        const priceProducts = await ShoppingCart.findAll({
+        const priceProducts = await ShoppingCarts.findAll({
             include: [
                 {
                     model: Clothes,
@@ -146,7 +152,7 @@ const queries = {
             totalPay = totalPay + element.amount * element.clothe.price;
         });
     
-        const clearCart = await ShoppingCart.destroy({
+        const clearCart = await ShoppingCarts.destroy({
             where: {
                 userId: userId
             }

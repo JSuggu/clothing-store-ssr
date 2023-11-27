@@ -3,13 +3,27 @@
         <%- include("templates/menu", {authorized}) %>
         <div class="main-container">
             <h1 class="title">Carrito de Compras</h1>
-            <section class="product-list">
-                    
-            </section>
-            <section class="purchase-container">
-                <span class="total-pay"></span>
-                <button id="purchase" class="purchase" value="purchase">Comprar</button>
-            </section>
+            <% if(authorized || products.length != 0) { %>
+                <section class="product-list">
+                    <% products.forEach(clothe => { %>
+                        <div class="cart-clothe-card">
+                            <section class="cart-clothe-image">
+                                <img src="<%= clothe.url%>" alt="<%= clothe.url%>">
+                            </section>
+                            <section class="cart-clothe-data">
+                                <span><%= clothe.clothe_name%></span>
+                                <span><%= clothe.price%></span>
+                            </section>
+                            <span class="clothe-amount"><%= clothe.amount%></span>
+                        </div>
+                    <% }) %>
+                    <span class="total-pay"><%= totalPay %></span>
+                </section>
+                <section class="purchase-container">
+                    <span class="total-pay"></span>
+                    <button id="purchase" class="purchase" value="purchase">Comprar</button>
+                </section>
+            <% } %>
         </div>
         <%- include("templates/footer") %>
     </body>

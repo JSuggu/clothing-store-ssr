@@ -36,18 +36,17 @@ router.get("/checkin", (req, res) => {
         return res.redirect("user");
     return res.render("checkin", {authorized: req.session.authorized});
 })
-
+/*
 router.get("/shopping_cart", (req, res) => {
     if(req.session.user)
         return res.render("shopping_cart", {authorized: req.session.authorized});
     return res.redirect("login");
 })
-
+*/
 router.get("/log_out", (req, res) => {
     req.session.destroy();
     return res.redirect("login");
 });
-
 
 //RUTA DEL SERVIDOR
 router.get("api", (req, res) => {return res.status(200).send("ok")})
@@ -77,14 +76,19 @@ router.put("/api/modify/product/:id", productsQueries.modifyProduct);
 router.delete("/api/delete/product/:id", productsQueries.deleteProduct);
 
 //RUTAS PARA EL CARRITO DE COMPRAS
-router.get("/api/shopping-cart", shoppingCartQueries.getProductsOfUser);
+router.get("/shopping-cart", shoppingCartQueries.getProductsOfUser);
 router.post("/api/shopping-cart/add-product/:id", shoppingCartQueries.addProduct);
 router.delete("/api/shopping-cart/delete-product/:id", shoppingCartQueries.deleteProduct);
 router.delete("/api/shopping-cart/purchase", shoppingCartQueries.clearCart);
 
 //RUTA PARA COMPRAR
-router.get("/product/buy/:id", (req,res)=> {
-    res.redirect("products");
+router.get("/products/:id/:name/buyed", (req,res)=> {
+    return res.render("buy_success", {
+        authorized: req.session.authorized, 
+        message:"producto comprado", 
+        clotheId: req.params.id,
+        clotheName: req.params.name
+    });
 });
 
 //RUTAS CREAR ROLES DE USUARIOS, COLORES Y TIPOS DE ROPA

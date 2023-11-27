@@ -1,0 +1,12 @@
+<%- include("templates/head") %>
+    <body>
+        <%- include("templates/menu", {authorized}) %>
+        <div class="main-container">
+            <section class="buy-data">
+                <h1><%= message%></h1>
+                <a href="/clothe/<%= clotheId%>/<%= clotheName%>"><button>Volver a la pagina anterior</button></a>
+            </section>
+        </div>
+        <%- include("templates/footer") %>
+    </body>
+</html>

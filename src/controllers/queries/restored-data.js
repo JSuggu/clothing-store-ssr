@@ -43,14 +43,14 @@ const users = [
 
 const queries = {
     deleteData: async function(req, res){
-        ClothesColor.destroy({where: {}, truncate: true, cascade: true});
-        ClothesType.destroy({where: {}, truncate: true, cascade: true});
-        ClothesSize.destroy({where: {}, truncate: true, cascade: true});
-        UsersRole.destroy({where: {}, truncate: true, cascade: true});
-        Clothes.destroy({where: {}, truncate: true, cascade: true});
-        Users.destroy({where: {}, truncate: true, cascade: true});
-        ClothesUColor.destroy({where: {}, truncate: true, cascade: true});
-        ClothesUSize.destroy({where: {}, truncate: true, cascade: true});
+        await ClothesColor.destroy({where: {}, truncate: false, cascade: true});
+        await ClothesType.destroy({where: {}, truncate: false, cascade: true});
+        await ClothesSize.destroy({where: {}, truncate: false, cascade: true});
+        await UsersRole.destroy({where: {}, truncate: false, cascade: true});
+        await Clothes.destroy({where: {}, truncate: false, cascade: true});
+        await Users.destroy({where: {}, truncate: false, cascade: true});
+        await ClothesUColor.destroy({where: {}, truncate: false, cascade: true});
+        await ClothesUSize.destroy({where: {}, truncate: false, cascade: true});
         
         return res.status(201).send({message:"backup realizado correctamente"});
     },

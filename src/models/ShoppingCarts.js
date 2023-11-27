@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 const Clothes = require("./Clothes");
 const Users = require("./Users");
 
-const ShoppingCart = sequelize.define("shopping_cart", {
+const ShoppingCarts = sequelize.define("shopping_carts", {
     id: {
         type: DataTypes.SMALLINT,
         autoIncrement: true,
@@ -17,12 +17,7 @@ const ShoppingCart = sequelize.define("shopping_cart", {
     }
 });
 
-Users.belongsToMany(Clothes, {
-    through: ShoppingCart
-});
+Clothes.belongsToMany(Users, {through: ShoppingCarts});
+Users.belongsToMany(Clothes, {through: ShoppingCarts});
 
-Clothes.belongsToMany(Users, {
-    through:ShoppingCart
-});
-
-module.exports = ShoppingCart;
+module.exports = ShoppingCarts;

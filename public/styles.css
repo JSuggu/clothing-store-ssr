@@ -415,16 +415,16 @@ label {
     border-right: 1px black solid;
 }
 
-.clothe-images-container {
+.clothe-image-container {
     display: flex;
-    width: 100%;
+    width: 90%;
     flex-wrap: wrap;
 }
 
 .clothe-images img {
     width: 100%;
     border-radius: 10px;
-    height: 300px;
+    height: 500px;
     aspect-ratio: 16/9;
     object-fit: cover;
 }
@@ -538,38 +538,46 @@ label {
 
 .product-list {
     display: flex;
+    width: 100%;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
 }
 
-.added-clothe {
+.cart-clothe-card {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 5fr 2fr 1fr;
     grid-template-rows: auto;
-    width: 100%;
-    column-gap: 30px;
+    width: 70%;
+    height: 100px;
     align-items: center;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
+    gap: 10px;
 }
 
-.clothe-image-chosen {
+.cart-clothe-image {
+    display: flex;
     width: 100px;
     height: 100px;
 }
 
-.clothe-name-chosen {
-    font-size: 16px;
+.cart-clothe-image img{
+    width: fit-content;
+}
+
+.cart-clothe-data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cart-clothe-data span, .clothe-amount {
+    font-size: 25px;
     text-transform: capitalize;
 }
 
-.clothe-price-chosen, .clothe-amount {
-    font-size: 16px;
-}
-
-.delete-of-shopping-cart {
-    width: 100px;
-    height: 50px;
+.cart-delete-button {
+    width: 150px;
+    height: 60px;
 }
 
 .purchase-container {

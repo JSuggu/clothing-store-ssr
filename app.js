@@ -35,6 +35,7 @@ app.use(
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/src/views"));
 app.use(express.static("public"));
+sequelize.sync();
 
 app.use(session({
   secret: 'kicback',
@@ -54,8 +55,6 @@ app.use(session({
 
 app.use("/", router);
 
-app.listen(process.env.PORT, (req, res) => {
-  sequelize.sync();
-});
+app.listen(process.env.PORT, (req, res) => {});
 
 module.exports = app;
