@@ -20,11 +20,12 @@ const queries = {
         if(!isUser)
             return res.status(404).send({message:"El usuario no existe en la base de datos"});
 
-
+        
         const products = await sequelize.query(`SELECT users.names, clothes.clothe_name, clothes.price, clothes.url, clothes.id, shopping_carts.amount 
-            FROM clothes INNER JOIN shopping_carts ON shopping_carts.clotheId = clothes.id INNER JOIN users ON users.id = shopping_carts.userId 
+            FROM clothes INNER JOIN shopping_carts ON "shopping_carts"."clotheId" = clothes.id INNER JOIN users ON users.id = "shopping_carts"."userId" 
             WHERE users.id = ${isUser.id};
         `);
+        
 
         if(products.length === 0)
             return res.status(404).send({message:"No tiene ningun producto agregado en el carrito"});
@@ -146,7 +147,7 @@ const queries = {
         if(!user) return res.status(400).send({message: "El usuario no esta conectado"});
 
         const priceProducts = await sequelize.query(`SELECT clothes.price, shopping_carts.amount FROM clothes INNER JOIN shopping_carts 
-        ON clothes.id = shopping_carts.clotheId INNER JOIN users ON users.id = shopping_carts.userId WHERE userId = ${user.id}`);
+        ON clothes.id = "shopping_carts"."clotheId" INNER JOIN users ON users.id = "shopping_carts"."userId" WHERE "userId" = ${user.id}`);
 
         if(priceProducts.length === 0)
             return res.status(404).send({message: "La compra no se ha realizado porque no hay productos en el carrito"});

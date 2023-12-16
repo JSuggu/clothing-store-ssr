@@ -15,8 +15,8 @@ const app = express();
 app.use(express.urlencoded({extends:false}));
 app.use(express.json());
 app.use(cookieParser());
-
 app.use(cors());
+
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
@@ -27,7 +27,7 @@ app.use(
           ],
           "img-src": ["'self'", "data:", "https://i.ibb.co"],
         },
-        reportOnly: true,
+        reportOnly: false,
       })
 );
 
@@ -42,8 +42,6 @@ app.use(session({
   cookie: {
     path: '/',
     originalMaxAge: 3600000,
-    secure: false,
-    sameSite: 'none'
   },
   proxy: true,
   store: new SequelizeStore({

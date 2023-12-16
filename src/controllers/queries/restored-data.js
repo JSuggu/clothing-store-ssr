@@ -43,14 +43,14 @@ const users = [
 
 const queries = {
     deleteData: async function(req, res){
-        await ClothesColor.destroy({where: {}, truncate: false, cascade: true});
-        await ClothesType.destroy({where: {}, truncate: false, cascade: true});
-        await ClothesSize.destroy({where: {}, truncate: false, cascade: true});
-        await UsersRole.destroy({where: {}, truncate: false, cascade: true});
-        await Clothes.destroy({where: {}, truncate: false, cascade: true});
-        await Users.destroy({where: {}, truncate: false, cascade: true});
-        await ClothesUColor.destroy({where: {}, truncate: false, cascade: true});
-        await ClothesUSize.destroy({where: {}, truncate: false, cascade: true});
+        await ClothesColor.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await ClothesType.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await ClothesSize.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await UsersRole.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await Clothes.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await Users.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await ClothesUColor.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
+        await ClothesUSize.destroy({where: {}, truncate: true, cascade: true, restartIdentity: true});
         
         return res.status(201).send({message:"backup realizado correctamente"});
     },
@@ -67,7 +67,7 @@ const queries = {
 }
 
 const insertClothes = async () => {
-    const clotheFile = readline.createInterface(fs.createReadStream(path.resolve(__dirname, "../../../files/clothe-list.svg")));
+    const clotheFile = readline.createInterface(fs.createReadStream(path.resolve(process.cwd(), "files/clothe-list.svg")));
     const clothes = [], clothesColor = [], clothesSize = [];
 
     clotheFile.on("line", async (line) => {
@@ -85,12 +85,12 @@ const insertClothes = async () => {
         let count = 0;
         result.forEach(clothe => {
     
-            clothesColor[count].split("|").forEach(color =>{
+            clothesColor[count]?.split("|").forEach(color =>{
                 if(color != "null")
                     clothesUnionColor.push({clotheId: clothe.id, clothesColorId: colorsIdMap.get(color)});
             });
     
-            clothesSize[count].split("|").forEach(size =>{
+            clothesSize[count]?.split("|").forEach(size =>{
                 if(size != "null")
                     clothesUnionSize.push({clotheId: clothe.id, clothesSizeId: sizesIdMap.get(size)});
             });
