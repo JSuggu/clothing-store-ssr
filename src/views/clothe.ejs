@@ -17,9 +17,9 @@
                         </div>
                         <% if(authorized) {%>
                             <div class="buy-cart-buttons">
-                                <button onclick=" fetch('/api/shopping-cart/add-product/<%=clothe.id%>', {method:'POST'}); alert('producto agregado')">
-                                    Agregar al Carrito
-                                </button>
+                                <form action="/api/shopping-cart/add-product/<%=clothe.id%>" method="get">
+                                    <button type="submit">Agregar al Carrito</button>
+                                </form>
                                 <a href="/products/<%= clothe.id%>/<%= clothe.clothe_name%>/buyed"><button>Comprar</button></a>
                             </div>
                         <% } else { %>

@@ -4,6 +4,7 @@ const ClothesType = require("../../models/ClothesTypes");
 const ClothesSize = require("../../models/ClotheSizes");
 const ClothesUColor = require("../../models/Clothes-U-Colors");
 const ClothesUSize = require("../../models/Clothes-U-Sizes");
+const { Op } = require("sequelize");
 
 //Conjunto que uso para verificar en los condicionales si se ingreso algun tipo de dato que no es valido
 const invalidData = new Set([undefined, null, NaN, ""]);
@@ -84,6 +85,26 @@ const queries = {
         },
     
         //PARA LOS PRODUCTOS
+        searchClothes: async function(req, res){
+            const data = req.query.search.split(" ");
+
+            if(invalidData.has(data)) return res.send(window.location.reload());
+
+            let products = await Clothes.findAll({
+                attributes: ["id", "clothe_name", "price", "url"],
+                where: {
+                    [Op.or]: data.map(word => ({
+                        clothe_name: {
+                            [Op.iLike]: `%${word}%`
+                        }
+                    }))
+                }
+            });
+
+            products = products.map(clohte => clohte.dataValues);
+
+            return res.render("products", {allProducts:products, authorized:req.params.authorized, type:"Productos", sizes:[], colors:[]});
+        },
 
         clothe: async function(req, res){
             const clotheId = req.params.id;

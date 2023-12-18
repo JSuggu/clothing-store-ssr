@@ -36,13 +36,7 @@ router.get("/checkin", (req, res) => {
         return res.redirect("user");
     return res.render("checkin", {authorized: req.session.authorized});
 })
-/*
-router.get("/shopping_cart", (req, res) => {
-    if(req.session.user)
-        return res.render("shopping_cart", {authorized: req.session.authorized});
-    return res.redirect("login");
-})
-*/
+
 router.get("/log_out", (req, res) => {
     req.session.destroy();
     return res.redirect("login");
@@ -68,6 +62,7 @@ router.put("/api/modify/email/:id?", userQueries.modifyEmail);
 router.delete("/api/delete/user/:id?", userQueries.deleteUser);
 
 //RUTAS PARA PRODUCTOS
+router.get("/search/products", productsQueries.searchClothes);
 router.get("/products", productsQueries.products);
 router.get("/products/leaked-products", productsQueries.productsFiltered);
 router.get("/clothe/:id/:name", productsQueries.clothe);
@@ -77,9 +72,9 @@ router.delete("/api/delete/product/:id", productsQueries.deleteProduct);
 
 //RUTAS PARA EL CARRITO DE COMPRAS
 router.get("/shopping-cart", shoppingCartQueries.getProductsOfUser);
-router.post("/api/shopping-cart/add-product/:id", shoppingCartQueries.addProduct);
-router.delete("/api/shopping-cart/delete-product/:id", shoppingCartQueries.deleteProduct);
-router.delete("/api/shopping-cart/purchase", shoppingCartQueries.clearCart);
+router.get("/api/shopping-cart/add-product/:id", shoppingCartQueries.addProduct);
+router.get("/api/shopping-cart/delete-product/:id", shoppingCartQueries.deleteProduct);
+router.get("/api/shopping-cart/purchase", shoppingCartQueries.clearCart);
 
 //RUTA PARA COMPRAR
 router.get("/products/:id/:name/buyed", (req,res)=> {
@@ -87,7 +82,8 @@ router.get("/products/:id/:name/buyed", (req,res)=> {
         authorized: req.session.authorized, 
         message:"producto comprado", 
         clotheId: req.params.id,
-        clotheName: req.params.name
+        clotheName: req.params.name,
+        totalPay: null
     });
 });
 

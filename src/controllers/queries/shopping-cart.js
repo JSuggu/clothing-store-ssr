@@ -78,17 +78,22 @@ const queries = {
                 }
             });
 
-            return res.status(201).send({updatedProductAmount, message: "Ha agregado el mismo producto y se actualizo la cantidad"});
+            return res.status(201).render("buy_success", {
+                updatedProductAmount, message: "Producto añadido", authorized: req.session.authorized, 
+                clotheId: productId, clotheName: isProduct.clothe_name, totalPay: null
+            });
         }
         
         const addedProduct = await ShoppingCarts.create({
             amount: 1,
             userId: isUser.id,
             clotheId: productId,
-
         });
         
-        return res.status(201).send({addedProduct, message: "Producto añadido"});
+        return res.status(201).render("buy_success", {
+            addedProduct, message: "Producto añadido", authorized: req.session.authorized, 
+            clotheId: productId, clotheName: isProduct.clothe_name, totalPay: null
+        });
     },
 
     deleteProduct: async function(req, res){
@@ -123,7 +128,7 @@ const queries = {
                 }
             });
 
-            return res.status(200).send({deleteProduct, message: "El producto fue eliminado"});
+            return queries.getProductsOfUser(req, res);
         }
 
         const updatedProductAmount = await ShoppingCarts.update({amount: productAmount-1}, {
@@ -132,7 +137,7 @@ const queries = {
             }
         });
 
-        return res.status(201).send({updatedProductAmount, message: "Elimino un producto que fue añadido varias veces y se actualizo la cantidad"});
+        return queries.getProductsOfUser(req, res);
     },
 
     clearCart: async function(req, res){
@@ -142,6 +147,8 @@ const queries = {
             where: {
                 user_name: username
             }
+        }).catch(err => {
+            return res.status(404).send("error usuario no existente");
         });
 
         if(!user) return res.status(400).send({message: "El usuario no esta conectado"});
@@ -164,8 +171,14 @@ const queries = {
             }
         });
 
-        return res.status(200).send({totalPay, clearCart, message: "Compra realizada, se han eliminado todos los productos del carrito"});
-    
+        return res.render("buy_success", {
+            totalPay, 
+            clearCart, 
+            authorized: req.session.authorized, 
+            message: "Compra realizada, se han eliminado todos los productos del carrito",
+            clotheId: null,
+            clotheName: null
+        });
     }
 }
 

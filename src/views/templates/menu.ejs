@@ -4,14 +4,12 @@
             <a href="/"><img class="logo-image" src="/default-icon.webp" alt="Logo"></a>
             <a href="/">Clothing<br>Store</a>
         </div>
-        <div class="search">
-            <section class="search-box">
-                <form class="search-form">
-                    <input type="text" placeholder="Buscar productos...">
-                </form>
-            </section>
+        <div class="search-box">
+            <form class="search-form" method="GET" action="/search/products">
+                <input type="text" id="search" name="search" placeholder="Buscar productos...">
+                <button type="submit" id="send"><img class="send" src="/search.png"></button>
+            </form>
         </div>
-
         <%if(authorized == undefined){%>
             <div class="login-checkin-user-cart">
                 <a href="/login" id="login-icon">Iniciar Sesión</a>

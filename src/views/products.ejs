@@ -4,30 +4,35 @@
         <div class="main-container">
             <h1 class="product-title"><%= type %></h1>
             <div class="filters-and-products">
-                <form class = "filters" method="get" action="/products/leaked-products?type=<%=type%>">
-                    <input type="radio" name="type" id="type" value="<%=type%>" checked>
-                    <div class="colors">
-                        <h3>Colors</h3>
-                        <% colors.forEach(color => { %>
-                            <section class="options">
-                                <input type="radio" name="color" id="color" value=<%= color.color_name %>>
-                                <label for="color"><%= color.color_name %></label>
-                            </section>
-                        <% }) %>
-                    </div>
-                    <% if(type!="calzado"){%>
-                        <div class="sizes">
-                            <h3>Talles</h3>
-                            <% sizes.forEach(size => { %>
+                <% if(type != "Productos") { %>
+                    <form class = "filters" method="get" action="/products/leaked-products?type=<%=type%>">
+                        <input type="radio" name="type" id="type" value="<%=type%>" checked>
+                        <div class="colors">
+                            <h3>Colors</h3>
+                            <% colors.forEach(color => { %>
                                 <section class="options">
-                                    <input type="radio" name="size" id="size" value=<%= size.size %>>
-                                    <label for="size"><%= size.size %></label>
+                                    <input type="radio" name="color" id="color" value=<%= color.color_name %>>
+                                    <label for="color"><%= color.color_name %></label>
                                 </section>
                             <% }) %>
                         </div>
-                    <% } %>
-                    <input type="submit" value="Filtrar">
-                </form>
+                        <% if(type!="calzado"){%>
+                            <div class="sizes">
+                                <h3>Talles</h3>
+                                <% sizes.forEach(size => { %>
+                                    <section class="options">
+                                        <input type="radio" name="size" id="size" value=<%= size.size %>>
+                                        <label for="size"><%= size.size %></label>
+                                    </section>
+                                <% }) %>
+                            </div>
+                        <% } %>
+                        <input type="submit" value="Filtrar">
+                    </form>
+                <% } else { %>
+                    <section class = "filters"></section>
+                <% } %>   
+                
                 <section class = "products">
                     <% allProducts.forEach(clothe => { %>
                         <div class= "clothe-card">

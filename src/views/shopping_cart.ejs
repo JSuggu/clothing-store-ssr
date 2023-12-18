@@ -15,26 +15,18 @@
                                 <span><%= clothe.price%></span>
                             </section>
                             <span class="clothe-amount"><%= clothe.amount%></span>
-                            <button class="cart-delete-button" value="delete-product"
-                            onclick="fetch('/api/shopping-cart/delete-product/<%=clothe.id%>', {method: 'DELETE'})
-                            .then(response => response.json())
-                            .then(data => alert(data.message))
-                            .finally(() => window.location.reload())">
-                                Borrar Producto
-                            </button>
+                            <form action="/api/shopping-cart/delete-product/<%=clothe.id%>" method="get">
+                                <button class="cart-delete-button" value="delete-product">Borrar Producto</button>
+                            </form>
                         </div>
                     <% }) %>
                     <span class="total-pay">Total a Pagar: <%= totalPay %></span>
                 </section>
                 <section class="purchase-container">
                     <span class="total-pay"></span>
-                    <button id="purchase" class="purchase" value="purchase"
-                    onclick="fetch('/api/shopping-cart/purchase', {method: 'DELETE'})
-                    .then(response => response.json())
-                    .then(data => alert(`${data.message}. La compra fue de: ${data.totalPay}`))
-                    .finally(()=> window.location.reload())">
-                        Comprar
-                    </button>
+                    <form action="/api/shopping-cart/purchase" method="get">
+                        <button id="purchase" class="purchase" value="purchase">Comprar</button>
+                    </form>
                 </section>
             <% } %>
         </div>

@@ -4,7 +4,15 @@
         <div class="main-container">
             <section class="buy-data">
                 <h1><%= message%></h1>
-                <a href="/clothe/<%= clotheId%>/<%= clotheName%>"><button>Volver a la pagina anterior</button></a>
+                <% if(totalPay){ %>
+                    <h1>Costo de la compra:<%= totalPay %></h1>
+                <% }%>
+                <% if(clotheId && clotheName) { %>
+                    <a href="/clothe/<%= clotheId%>/<%= clotheName%>"><button>Volver a la pagina anterior</button></a>
+                <% } else { %>
+                    <a href="/products?type=pantalon"><button>Volver a lista de producto</button></a>
+                <% } %>
+                
             </section>
         </div>
         <%- include("templates/footer") %>
