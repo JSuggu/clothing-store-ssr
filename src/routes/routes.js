@@ -4,43 +4,16 @@ const userQueries = require("../controllers/queries/users");
 const productsQueries = require("../controllers/queries/products");
 const shoppingCartQueries = require("../controllers/queries/shopping-cart");
 const restoredQuerie = require("../controllers/queries/restored-data");
+const viewQueries = require("../controllers/queries/views");
+const othersQueries = require("../controllers/queries/others");
 
 //RUTA DE VISTAS
-router.get("", (req, res) => {
-    return res.render("home", {authorized: req.session.authorized});
-})
-
-router.get("/", (req, res) => {
-    return res.render("home", {authorized: req.session.authorized});
-})
-
-router.get("/user", (req, res) => {
-    if(!req.session.user)
-        return res.redirect("login");
-    const userData = {
-        names: req.session.names,
-        email: req.session.email,
-        password: req.session.password
-    }
-    return res.render("user", {authorized: req.session.authorized, userData});
-});
-
-router.get("/login", (req, res) => {
-    if(req.session.user)
-        return res.redirect("user");
-    return res.render("login", {message:"", authorized: req.session.authorized});
-})
-
-router.get("/checkin", (req, res) => {
-    if(req.session.user)
-        return res.redirect("user");
-    return res.render("checkin", {authorized: req.session.authorized});
-})
-
-router.get("/log_out", (req, res) => {
-    req.session.destroy();
-    return res.redirect("login");
-});
+router.get("", viewQueries.homeView);
+router.get("/", viewQueries.homeView);
+router.get("/user", viewQueries.userView);
+router.get("/login", viewQueries.loginView);
+router.get("/checkin", viewQueries.checkinView);
+router.get("/log_out", viewQueries.logout);
 
 //RUTA DEL SERVIDOR
 router.get("api", (req, res) => {return res.status(200).send("ok")})
@@ -77,15 +50,7 @@ router.get("/api/shopping-cart/delete-product/:id", shoppingCartQueries.deletePr
 router.get("/api/shopping-cart/purchase", shoppingCartQueries.clearCart);
 
 //RUTA PARA COMPRAR
-router.get("/products/:id/:name/buyed", (req,res)=> {
-    return res.render("buy_success", {
-        authorized: req.session.authorized, 
-        message:"producto comprado", 
-        clotheId: req.params.id,
-        clotheName: req.params.name,
-        totalPay: null
-    });
-});
+router.get("/products/:id/:name/buyed", othersQueries.buyProduct);
 
 //RUTAS CREAR ROLES DE USUARIOS, COLORES Y TIPOS DE ROPA
 router.post("/api/add/user-role",userQueries.addRole);
