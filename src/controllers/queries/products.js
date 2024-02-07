@@ -140,6 +140,9 @@ const queries = {
             const sizes = (await queries.sizes()).map(clothe => clothe.dataValues);
             const colors = (await queries.colors()).map(clothe => clothe.dataValues);
             let authorized = req.session.authorized;
+            const sizeRegister = 8;
+            let page = req.query.page;
+            page = (invalidData.has(page) || page == 1 || page == 0)? 1 : page;
 
             if(!invalidData.has(clotheType) && clotheType != ""){
                 const type = await ClothesType.findOne({
@@ -151,6 +154,12 @@ const queries = {
                 if(!type)
                     return res.status(404).render("not-found", {message: "El tipo de ropa elegido no existe", authorized});
                 
+                const productAmountFiltered = await Clothes.findAll({
+                    where: {
+                        type_id: type.id
+                    }
+                });
+
                 let allProductsFiltered = await Clothes.findAll({
                     include: [
                         {
@@ -171,13 +180,17 @@ const queries = {
                     attributes: ["id", "clothe_name", "price", "url"],
                     where: {
                         type_id: type.id
-                    }
+                    },
+                    limit: sizeRegister,
+                    offset: (page-1) * sizeRegister
                 });
+
+                const amountLabelForPagination = Math.ceil(productAmountFiltered.length/8);
                 
-                return res.status(200).render("products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, authorized});
+                return res.status(200).render("products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, amountLabelForPagination, authorized});
             }
 
-            return res.status(400).render("not-found", {authorized});
+            return res.status(400).render("not-found", {message: "El tipo de ropa elegido no existe", authorized});
         },
 
 
@@ -187,6 +200,8 @@ const queries = {
             const clotheType = req.query.type;
             const {color, size} = req.query;
             let authorized = req.session.authorized;
+            let page = req.query.page;
+            page = (invalidData.has(page) || page == 1 || page == 0)? 1 : page;
             let allProductsFiltered = [];
 
             if(!invalidData.has(clotheType) && clotheType != ""){
@@ -219,9 +234,8 @@ const queries = {
                     attributes: ["id", "clothe_name", "price", "url"],
                     where: {
                         type_id: type.id
-                    }
+                    },
                 });
-
 
                 allProductsFiltered = allProductsFiltered.filter(products => {
                     if(!color && !size)
@@ -235,14 +249,18 @@ const queries = {
                         return products.clothes_colors.some(clothe => clothe.color_name == color)
                     if(size)
                         return products.clothes_sizes.some(clothe => clothe.size == size)
-                    
-                })
-                
-                return res.status(200).render("leaked_products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, authorized});
+                });
 
+                const amountLabelForPagination = Math.ceil(allProductsFiltered.length/8);
+                const sizeRegister = 8;
+
+                allProductsFiltered = allProductsFiltered.slice((page-1)*sizeRegister, page*sizeRegister);
+                
+                return res.status(200).render("leaked_products", {allProducts: allProductsFiltered, colors, sizes, type: type.type_name, 
+                    amountLabelForPagination, authorized, chosenColor: color,});
             }
 
-            return res.status(400).render("not-found", {authorized});
+            return res.status(400).render("not-found", {message: "El tipo de ropa elegido no existe", authorized});
         },
     
         //Completar esta funcion para color y tipo representen un id de sus respectivas tablas

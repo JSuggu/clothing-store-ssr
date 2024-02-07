@@ -4,7 +4,7 @@
         <div class="main-container">
             <h1 class="title"><%= type %></h1>
             <div class="filters-and-products">
-                <form class = "filters" method="get" action="/leaked-products?type=<%=type%>">
+                <form class = "filters" method="get" action="leaked-products?type=<%=type%>">
                     <input type="radio" name="type" id="type-l" value="<%=type%>" checked>
                     <div class="colors">
                         <h3>Colors</h3>
@@ -28,18 +28,25 @@
                     <% } %>
                     <input type="submit" value="Filtrar">
                 </form>
-                <section class = "products">
-                    <% allProducts.forEach(clothe => { %>
-                        <div class= "clothe-card">
-                            <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
-                                <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
-                                <section class= "clothe-card-data-container">
-                                    <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
-                                    <span class= "clothe-card-price"><%= clothe.price %></span>
-                                </section>
-                            </a>
-                        </div>
-                    <% }) %>
+                <section class="products-container">
+                    <div class = "products">
+                        <% allProducts.forEach(clothe => { %>
+                            <section class= "clothe-card">
+                                <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
+                                    <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
+                                    <div class= "clothe-card-data-container">
+                                        <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
+                                        <span class= "clothe-card-price"><%= clothe.price %></span>
+                                    </div>
+                                </a>
+                            </section>
+                        <% }) %>
+                    </div>
+                    <div class="label-pagination-container">
+                        <%for(let i=1; i<=amountLabelForPagination; i++) {%>
+                            <a class="label-pagination" href="/products/leaked-products?type=<%=type%>&color=<%=chosenColor%>&page=<%=i%>"><button><%= i %></button></a>
+                        <% } %>
+                    </div>
                 </section>
             </div>
         </div>

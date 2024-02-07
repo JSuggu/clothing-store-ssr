@@ -33,18 +33,25 @@
                     <section class = "filters"></section>
                 <% } %>   
                 
-                <section class = "products">
-                    <% allProducts.forEach(clothe => { %>
-                        <div class= "clothe-card">
-                            <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
-                                <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
-                                <section class= "clothe-card-data-container">
-                                    <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
-                                    <span class= "clothe-card-price"><%= clothe.price %></span>
-                                </section>
-                            </a>
-                        </div>
-                    <% }) %>
+                <section class="products-container">
+                    <section class = "products">
+                        <% allProducts.forEach(clothe => { %>
+                            <div class= "clothe-card">
+                                <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
+                                    <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
+                                    <section class= "clothe-card-data-container">
+                                        <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
+                                        <span class= "clothe-card-price"><%= clothe.price %></span>
+                                    </section>
+                                </a>
+                            </div>
+                        <% }) %>
+                    </section>
+                    <section class="label-pagination-container">
+                        <% for(let i=1; i<=amountLabelForPagination; i++) {%>
+                            <a class="label-pagination" href="/products?type=<%=type%>&page=<%=i%>"><button><%= i %></button></a>
+                        <% } %>
+                    </section>
                 </section>
             </div>
         </div>
