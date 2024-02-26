@@ -71,9 +71,9 @@ const insertClothes = async () => {
     const clothes = [], clothesColor = [], clothesSize = [];
 
     clotheFile.on("line", async (line) => {
-        const [clothe_name, price, url, type_name, colors, sizes, on_sale, discount] = line.split(",");
+        const [clothe_name, price, description, url, type_name, on_sale, discount, colors, sizes] = line.split(",");
         const type_id = typesIdMap.get(type_name);
-        clothes.push({clothe_name, price, url, type_id, on_sale, discount});
+        clothes.push({clothe_name, price, description, url, type_id, on_sale, discount});
         clothesColor.push(colors);
         clothesSize.push(sizes);
     });
