@@ -1,39 +1,39 @@
-zapatillas,1000,https://i.ibb.co/X8ctKSH/zapatillas.webp,calzado,azul|amarillo,null
-zapatos de gala,1000,https://i.ibb.co/Gc0J68X/zapato.webp,calzado,amarillo,null
-pantuflas,1000,https://i.ibb.co/bsfGByj/pantuflas.webp,calzado,rojo|azul|amarillo,null
-ojotas,500,https://i.ibb.co/w6sQ4RC/ojotas.webp,calzado,rojo|azul|amarillo,null
-botin de futbol,3000,https://i.ibb.co/nPjgH3q/botin.webp,calzado,rojo|azul,null
-borcegos,2500,https://i.ibb.co/0BBqnQx/borcegos.webp,calzado,rojo|negro|marron,null
-sandalias,2200,https://i.ibb.co/THjJd8G/sandalia.webp,calzado,negro|marron,null
-zapatos de mujer,1500,https://i.ibb.co/VNFyKqx/zapatos-de-mujer.webp,calzado,rojo|negro|marron,null
-zapatillas de skate,2000,https://i.ibb.co/GQ48r88/zapatillas-de-skate.webp,calzado,rojo|azul,null
-zapatillas de golf,2300,https://i.ibb.co/dBDtrVM/zapatillas-de-golf.webp,calzado,negro,null
-zapatos ortopedicos,3000,https://i.ibb.co/0MDk1jv/zapatos-ortopedicos.jpg,calzado,negro,null
-botas para lluvia,1500,https://i.ibb.co/G2FRpfn/botas-para-lluvia.jpg,calzado,amarillo|negro|marron,null
-zapatillas de tenis,3000,https://i.ibb.co/Rh9SHVH/zapatillas-de-tenis.webp,calzado,azul,null
-zapatillas de basket,3000,https://i.ibb.co/6J3HZj4/zapatillas-de-basket.webp,calzado,rojo|azul,null
-bermuda de jean,1800,https://i.ibb.co/WpxH3dp/bermuda-jean.webp,pantalon,azul|negro|marron,L|XL
-jeans,1000,https://i.ibb.co/wWqHhDp/jeans.webp,pantalon,rojo|amarillo,M|L|XL
-leggins,1300,https://i.ibb.co/Yp88RKK/calza.webp,pantalon,negro,M|L
-pantalon corto,1000,https://i.ibb.co/6gf7qyc/pantalon-corto.webp,pantalon,azul|amarillo,L|XL
-pantalon de futbol,2300,https://i.ibb.co/1mtbWxj/pantalon-de-futbol.webp,pantalon,azul|rojo,M|L|XL
-pantalon de arquero largo,2500,https://i.ibb.co/WF1v0nr/pantalon-de-arquero-largo.jpg,pantalon,negro,L|XL
-pantalon de vestir,3000,https://i.ibb.co/R3Twgnv/pantalon-de-vestir.webp,pantalon,negro,L|XL
-jean acampanado,2800,https://i.ibb.co/R4LcQq7/jean-acampanado.webp,pantalon,azul|negro,M|L
-joggin,1300,https://i.ibb.co/ctNyFvs/joggin.webp,pantalon,negro,M|L|XL
-pantalon de cuero,2200,https://i.ibb.co/86LymjF/pantalon-de-cuero.webp,pantalon,negro|rojo,M|L
-pantalon de basket,2500,https://i.ibb.co/N9fLdWP/pantalon-de-basket.webp,pantalon,azul|amarillo,L|XL
-pantalon de pana,2200,https://i.ibb.co/yRX5hDq/pantalon-de-pana.jpg,pantalon,marron,M|L
-pantalon de capri,1800,https://i.ibb.co/KVFcgJs/pantalon-de-capri.webp,pantalon,azul|marron,M|L
-remera,1000,https://i.ibb.co/VMNWKzz/remera.webp,remera,rojo|azul|amarillo,M|L|XL
-camiseta manga larga,1000,https://i.ibb.co/D96cPBr/camiseta-manga-larga.webp,remera,rojo|amarillo,M|L|XL
-camisa de vestir,1000,https://i.ibb.co/NrJsdB6/camisa-de-vestir.webp,remera,azul,L|XL
-polera,1500,https://i.ibb.co/QXrJGgd/polera.webp,remera,negro|marron,L|XL
-camisa a cuadros,1300,https://i.ibb.co/YZM70yz/camisa-cuadros.webp,remera,rojo|negro,M|L|XL
-camisa polo,2000,https://i.ibb.co/Zhc1fk0/camisa-polo.webp,remera,negro,L|XL
-camiseta de futbol,2500,https://i.ibb.co/Vm4BPp3/camiseta-de-futbol.jpg,remera,amarillo|azul|rojo|negro,M|L|XL
-remera cuello en v,1000,https://i.ibb.co/7Qz76vC/remera-cuello-v.jpg,remera,azul|negro,M|L|XL
-remera de rock,1800,https://i.ibb.co/J2CVHQt/remera-de-rock.webp,remera,negro,M|L|XL
-remera henley,2300,https://i.ibb.co/TcHdTZb/remera-henley.jpg,remera,azul|negro,L|XL
-remera oversize,1300,https://i.ibb.co/fvRMqPX/remera-oversize.webp,remera,negro,XL
-camiseta de basket,3000,https://i.ibb.co/xYc5JSh/camiseta-de-basket.webp,remera,rojo|amarillo|azul,L|XL
+zapatillas,1000,https://i.ibb.co/X8ctKSH/zapatillas.webp,calzado,azul|amarillo,null,true,10
+zapatos de gala,1000,https://i.ibb.co/Gc0J68X/zapato.webp,calzado,amarillo,null,null,null
+pantuflas,1000,https://i.ibb.co/bsfGByj/pantuflas.webp,calzado,rojo|azul|amarillo,null,null,null
+ojotas,500,https://i.ibb.co/w6sQ4RC/ojotas.webp,calzado,rojo|azul|amarillo,null,null,null
+botin de futbol,3000,https://i.ibb.co/nPjgH3q/botin.webp,calzado,rojo|azul,null,null,null
+borcegos,2500,https://i.ibb.co/0BBqnQx/borcegos.webp,calzado,rojo|negro|marron,null,true,30
+sandalias,2200,https://i.ibb.co/THjJd8G/sandalia.webp,calzado,negro|marron,null,null,null
+zapatos de mujer,1500,https://i.ibb.co/VNFyKqx/zapatos-de-mujer.webp,calzado,rojo|negro|marron,null,null,null
+zapatillas de skate,2000,https://i.ibb.co/GQ48r88/zapatillas-de-skate.webp,calzado,rojo|azul,null,null,null
+zapatillas de golf,2300,https://i.ibb.co/dBDtrVM/zapatillas-de-golf.webp,calzado,negro,null,true,20
+zapatos ortopedicos,3000,https://i.ibb.co/0MDk1jv/zapatos-ortopedicos.jpg,calzado,negro,null,null,null
+botas para lluvia,1500,https://i.ibb.co/G2FRpfn/botas-para-lluvia.jpg,calzado,amarillo|negro|marron,null,null,null
+zapatillas de tenis,3000,https://i.ibb.co/Rh9SHVH/zapatillas-de-tenis.webp,calzado,azul,null,null,null
+zapatillas de basket,3000,https://i.ibb.co/6J3HZj4/zapatillas-de-basket.webp,calzado,rojo|azul,null,null,null
+bermuda de jean,1800,https://i.ibb.co/WpxH3dp/bermuda-jean.webp,pantalon,azul|negro|marron,L|XL,true,50
+jeans,1000,https://i.ibb.co/wWqHhDp/jeans.webp,pantalon,rojo|amarillo,M|L|XL,true,10
+leggins,1300,https://i.ibb.co/Yp88RKK/calza.webp,pantalon,negro,M|L,null,null
+pantalon corto,1000,https://i.ibb.co/6gf7qyc/pantalon-corto.webp,pantalon,azul|amarillo,L|XL,null,null
+pantalon de futbol,2300,https://i.ibb.co/1mtbWxj/pantalon-de-futbol.webp,pantalon,azul|rojo,M|L|XL,null,null
+pantalon de arquero largo,2500,https://i.ibb.co/WF1v0nr/pantalon-de-arquero-largo.jpg,pantalon,negro,L|XL,true,20
+pantalon de vestir,3000,https://i.ibb.co/R3Twgnv/pantalon-de-vestir.webp,pantalon,negro,L|XL,null,null
+jean acampanado,2800,https://i.ibb.co/R4LcQq7/jean-acampanado.webp,pantalon,azul|negro,M|L,null,null
+joggin,1300,https://i.ibb.co/ctNyFvs/joggin.webp,pantalon,negro,M|L|XL,true,10
+pantalon de cuero,2200,https://i.ibb.co/86LymjF/pantalon-de-cuero.webp,pantalon,negro|rojo,M|L,null,null
+pantalon de basket,2500,https://i.ibb.co/N9fLdWP/pantalon-de-basket.webp,pantalon,azul|amarillo,L|XL,null,null
+pantalon de pana,2200,https://i.ibb.co/yRX5hDq/pantalon-de-pana.jpg,pantalon,marron,M|L,null,null
+pantalon de capri,1800,https://i.ibb.co/KVFcgJs/pantalon-de-capri.webp,pantalon,azul|marron,M|L,null,null
+remera,1000,https://i.ibb.co/VMNWKzz/remera.webp,remera,rojo|azul|amarillo,M|L|XL,true,20
+camiseta manga larga,1000,https://i.ibb.co/D96cPBr/camiseta-manga-larga.webp,remera,rojo|amarillo,M|L|XL,null,null
+camisa de vestir,1000,https://i.ibb.co/NrJsdB6/camisa-de-vestir.webp,remera,azul,L|XL,null,null
+polera,1500,https://i.ibb.co/QXrJGgd/polera.webp,remera,negro|marron,L|XL,null,null
+camisa a cuadros,1300,https://i.ibb.co/YZM70yz/camisa-cuadros.webp,remera,rojo|negro,M|L|XL,true,10
+camisa polo,2000,https://i.ibb.co/Zhc1fk0/camisa-polo.webp,remera,negro,L|XL,null,null
+camiseta de futbol,2500,https://i.ibb.co/Vm4BPp3/camiseta-de-futbol.jpg,remera,amarillo|azul|rojo|negro,M|L|XL,null,null
+remera cuello en v,1000,https://i.ibb.co/7Qz76vC/remera-cuello-v.jpg,remera,azul|negro,M|L|XL,null,null
+remera de rock,1800,https://i.ibb.co/J2CVHQt/remera-de-rock.webp,remera,negro,M|L|XL,null,null
+remera henley,2300,https://i.ibb.co/TcHdTZb/remera-henley.jpg,remera,azul|negro,L|XL,null,null
+remera oversize,1300,https://i.ibb.co/fvRMqPX/remera-oversize.webp,remera,negro,XL,true,30
+camiseta de basket,3000,https://i.ibb.co/xYc5JSh/camiseta-de-basket.webp,remera,rojo|amarillo|azul,L|XL,null,null

@@ -5,11 +5,9 @@ let data =  require("dotenv").config({
 });
 
 module.exports = {
-    PORT: data.parsed.PORT,
     DB_HOST: data.parsed.DB_HOST,
     DB_USER: data.parsed.DB_USER,
     DB_PASSWORD: data.parsed.DB_PASSWORD,
     DB_DATABASE: data.parsed.DB_DATABSE,
-    DB_PORT: data.parsed.DB_PORT,
-    DB_URI: data.parsed.DB_URI
+    DB_PORT: data.parsed.DB_PORT
 }

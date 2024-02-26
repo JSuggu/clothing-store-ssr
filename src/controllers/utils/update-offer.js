@@ -18,7 +18,7 @@ const updateOffer = function(){
             discountsIndex++;
         });
 
-    }, 3600000)
+    }, 86400000)
 }
 
 function makeSetProductToOffer(limit){

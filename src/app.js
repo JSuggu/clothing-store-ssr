@@ -7,7 +7,6 @@ const router = require("./routes/routes");
 const sequelize = require("./controllers/db-connection");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const data = require("../config");
 const updateOffer = require("./controllers/utils/update-offer");
 
 const app = express();
@@ -55,6 +54,6 @@ app.use(session({
 
 app.use("/", router);
 
-app.listen(data.PORT, (req, res) => {});
+app.listen(process.env.PORT || 3000, (req, res) => {});
 
 module.exports = app;

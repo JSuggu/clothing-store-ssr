@@ -4,9 +4,18 @@ const data =  require(`../../config`);
 let sequelize;
 
 if(process.env.NODE_ENV == "development"){
-    sequelize = new Sequelize(data.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
+    sequelize = new Sequelize(data.DB_DATABASE, data.DB_USER, data.DB_PASSWORD, {
+        host: data.DB_HOST,
+        port: data.DB_PORT,
+        dialect: "postgres",
+        storage: "./session.postgres",
+        define: {timestamps: false},
+        dialectOptions: {multipleStatements: true}
+    });
+} else if(process.env.NODE_ENV == "production"){
+    sequelize = new Sequelize(data.DB_DATABASE, data.DB_USER, data.DB_PASSWORD, {
+        host: data.DB_HOST,
+        port: data.DB_PORT,
         dialect: "postgres",
         storage: "./session.postgres",
         define: {timestamps: false},
