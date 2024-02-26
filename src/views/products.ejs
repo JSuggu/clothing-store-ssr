@@ -27,7 +27,7 @@
                                 <% }) %>
                             </div>
                         <% } %>
-                        <input type="submit" value="Filtrar">
+                        <input type="submit" id="apply-filter" value="Filtrar">
                     </form>
                 <% } else { %>
                     <section class = "filters"></section>
@@ -41,7 +41,15 @@
                                     <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
                                     <section class= "clothe-card-data-container">
                                         <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
-                                        <span class= "clothe-card-price"><%= clothe.price %></span>
+                                        <% if(clothe.on_sale){ %>
+                                            <span class= "clothe-card-price" style="text-decoration: line-through;"><%= clothe.price %></span>
+                                            <div class="clothe-card-prince-container">
+                                                <span class= "clothe-card-price-with-discount"><%= clothe.price - (clothe.price*clothe.discount/100) %></span>
+                                                <span class= "clothe-card-discount"><%= clothe.discount %>%</span>
+                                            </div>
+                                        <% } else { %>
+                                            <span class= "clothe-card-price"><%= clothe.price %></span>
+                                        <% } %>
                                     </section>
                                 </a>
                             </div>

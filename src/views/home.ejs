@@ -2,24 +2,35 @@
     <body>
         <%- include("templates/menu", {authorized}) %>
         <div class="main-container">
-            <img src="/clothing-store-home.webp" class="home-image">
-            <div class="carrousel-container">
-                <button id="prev-slider"><img src="/left-arrow.svg" alt="left-arrow"></button>
-                <section class="carrousel-list" >
-                    <% products.forEach( clothe => { %>
-                        <div class= "clothe-card-home">
-                            <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
-                                <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
-                                <section class= "clothe-card-data-container">
-                                    <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
-                                    <span class= "clothe-card-price"><%= clothe.price %></span>
-                                </section>
-                            </a>
-                        </div>
-                    <% }) %>
+            <section class="home-image-container">
+                <img src="/clothing-store-home.webp" class="home-image">
+            </section>
+            <% if(products != 0 || products != undefined) {%>
+                <section class="separator-line">
+                    <h2>OFERTAS</h2>
                 </section>
-                <button id="next-slider"><img src="/left-arrow.svg" alt="left-arrow" style="transform: scaleX(-1);"></button>
-            </div>
+                <div class="carrousel-container">
+                    <button id="prev-slider"><img src="/left-arrow.svg" alt="left-arrow"></button>
+                    <section class="carrousel-list" >
+                        <% products.forEach( clothe => { %>
+                            <div class= "clothe-card-home">
+                                <a href="/clothe/<%= clothe.id%>/<%= clothe.clothe_name%>" type="hidden">
+                                    <img class = "clothe-card-image" src=<%= clothe.url %> alt="Producto">
+                                    <section class= "clothe-card-data-container">
+                                        <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
+                                        <span class= "clothe-card-price"><%= clothe.price %></span>
+                                        <div class="clothe-card-discount-container">
+                                            <span class= "clothe-card-price-with-discount"><%= clothe.price - (clothe.price*clothe.discount/100) %></span>
+                                            <span class= "clothe-card-discount"><%= clothe.discount %>%</span>
+                                        </div>
+                                    </section>
+                                </a>
+                            </div>
+                        <% }) %>
+                    </section>
+                    <button id="next-slider"><img src="/left-arrow.svg" alt="left-arrow" style="transform: scaleX(-1);"></button>
+                </div>
+            <% } %>
         </div>
         <%- include("templates/footer") %>
     </body>

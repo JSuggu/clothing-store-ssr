@@ -3,13 +3,15 @@ const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-const router = require("./src/routes/routes");
-const sequelize = require("./src/controllers/db-connection");
+const router = require("./routes/routes");
+const sequelize = require("./controllers/db-connection");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-require("dotenv").config({path: "./.env"});
+const data = require("../config");
+const updateOffer = require("./controllers/utils/update-offer");
 
 const app = express();
+updateOffer();
 
 //MIDDLEWARES
 app.use(express.urlencoded({extends:false}));
@@ -33,7 +35,7 @@ app.use(
 
 //SERVER
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/src/views"));
+app.set("views", path.join(process.cwd(), "/src/views"));
 app.use(express.static("public"));
 sequelize.sync();
 
@@ -49,10 +51,10 @@ app.use(session({
   }),
   saveUninitialized: true,
   resave: false
-}))
+}));
 
 app.use("/", router);
 
-app.listen(process.env.PORT, (req, res) => {});
+app.listen(data.PORT, (req, res) => {});
 
 module.exports = app;

@@ -26,7 +26,7 @@
                             <% }) %>
                         </div>
                     <% } %>
-                    <input type="submit" value="Filtrar">
+                    <input type="submit" id="apply-filter" value="Filtrar">
                 </form>
                 <section class="products-container">
                     <div class = "products">
@@ -37,6 +37,12 @@
                                     <div class= "clothe-card-data-container">
                                         <span class= "clothe-card-name"><%= clothe.clothe_name %></span>
                                         <span class= "clothe-card-price"><%= clothe.price %></span>
+                                        <% if(clothe.on_sale){ %>
+                                            <div class="clothe-card-prince-container">
+                                                <span class= "clothe-card-price-with-discount"><%= clothe.price - (clothe.price*clothe.discount/100) %></span>
+                                                <span class= "clothe-card-discount"><%= clothe.discount %>%</span>
+                                            </div>
+                                        <% } %>
                                     </div>
                                 </a>
                             </section>

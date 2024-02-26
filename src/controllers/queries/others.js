@@ -32,8 +32,10 @@ const queries = {
                     attributes: ["color_name"]
                 }
             ],
-            attributes: ["id", "clothe_name", "price", "url"],
-            limit: 10
+            attributes: ["id", "clothe_name", "price", "url", "discount"],
+            where: {
+                on_sale: true
+            }
         });
 
         return productsMostView

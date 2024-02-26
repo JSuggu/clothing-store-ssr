@@ -11,21 +11,32 @@
                         </div>
                     </section>
                     <section class="clothe-prices-container">
-                        <div class="clothe-prices">
-                            <h2>Precio</h2>
-                            <span><%= clothe.price%></span>
-                        </div>
+                        <% if(clothe.on_sale) {%>
+                            <div class="clothe-prices">
+                                <h2>Precio</h2>
+                                <span style="text-decoration: line-through;"><%= clothe.price%></span>
+                                <div class="clothe-card-prince-container">
+                                    <span class= "clothe-card-price-with-discount"><%= clothe.price - (clothe.price*clothe.discount/100) %></span>
+                                    <span class= "clothe-card-discount"><%= clothe.discount %>%</span>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="clothe-prices">
+                                <h2>Precio</h2>
+                                <span><%= clothe.price%></span>
+                            </div>
+                        <% } %>
                         <% if(authorized) {%>
                             <div class="buy-cart-buttons">
                                 <form action="/api/shopping-cart/add-product/<%=clothe.id%>" method="get">
-                                    <button type="submit">Agregar al Carrito</button>
+                                    <button type="submit" class="button-add-to-cart">Agregar al Carrito</button>
                                 </form>
                                 <a href="/products/<%= clothe.id%>/<%= clothe.clothe_name%>/buyed"><button>Comprar</button></a>
                             </div>
                         <% } else { %>
                             <div class="buy-cart-buttons">
-                                <a href="/login"><button>Agregar al Carrito</button></a>
-                                <a href="/login"><button>Comprar</button></a>
+                                <a href="/login"><button class="button-add-to-cart">Agregar al Carrito</button></a>
+                                <a href="/login"><button class="button-buy-product">Comprar</button></a>
                             </div>
                         <% } %>
                     </section>

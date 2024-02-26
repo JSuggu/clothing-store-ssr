@@ -21,7 +21,7 @@ span, a {
 }
 
 body {
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(240, 240, 240);
 }
 
 /***** CONTENEDOR SUPERIOR *****/
@@ -108,6 +108,7 @@ body {
     border: 1px solid rgb(170, 170, 170);
     border-radius: 15px 0px 0px 15px;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+    padding: 2px;
 }
 
 #send {
@@ -151,17 +152,14 @@ body {
     height: 100%;
 }
 
-.home-container img {
+.home-image-container {
+    width: 100%;
+}
+
+.home-image-container img {
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
-}
-
-.carrousel-container {
-    width: 70%;
-    display: flex;
-    margin: 0px auto;
-    justify-content: center;
 }
 
 .image-list {
@@ -170,6 +168,99 @@ body {
 }
 
 .prev-slider img, .next-slider img {
+    width: 30px;
+    height: 50px;
+}
+
+/* HOME CARROUSEL */
+
+.separator-line {
+    width: 100%;
+    position: relative;
+    margin: 20px 0;
+}
+
+.separator-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid black; 
+}
+
+.separator-line h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(240, 240, 240);
+    padding: 0 10px;
+    z-index: 1;
+    white-space: nowrap; 
+}
+
+.carrousel-container {
+    width: 70%;
+    display: flex;
+    margin: 0px auto;
+    justify-content: center;
+    margin-bottom: 100px;
+    gap: 10px;
+    align-items: center;
+}
+
+.carrousel-list {
+    display: flex;
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 10px;
+}
+
+.clothe-card-home {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px 10px 10px 10px;
+    gap: 10px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255, 255, 255);
+}
+
+.clothe-card-home img {
+    width: 150px;
+    border-radius: 10px;
+    height: 100px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.clothe-card-home .clothe-card-home, .clothe-card-home .clothe-card-name, .clothe-card-home .clothe-card-price, 
+.clothe-card-home .clothe-card-price-with-discount, .clothe-card-home .clothe-card-discount {
+    font-size: 12px;
+}
+
+.clothe-card-discount-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.clothe-card-discount {
+    border: 1px solid black;
+    border-radius: 20%;
+    padding: 2px;
+}
+
+.clothe-card-home .clothe-card-price {
+    text-decoration: line-through;
+}
+
+#prev-slider, #next-slider, #prev-slider img, #next-slider img {
     width: 30px;
     height: 50px;
 }
@@ -309,28 +400,12 @@ label {
     font-size: 20px;
 }
 
-.add-button {
-    width: 200px;
-    margin-left: 300px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: background-color 0.2ms;
-    border: 1px solid;
-    border-radius: 3px 3px 3px 3px;
-    padding: 2px;
-}
-
-.add-button:hover {
-    background-color: rgb(204, 233, 253);
-    cursor: pointer;
-}
-
 .filters-and-products{
     display: flex;
     min-width: 708px;
     max-width: 100%;
     justify-content: space-between;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(240, 240, 240);
     gap: 50px;
 }
 
@@ -340,6 +415,16 @@ label {
     width: 10%;
     height: 500px;
     gap: 30px;
+}
+
+#apply-filter {
+    transition: background-color 0.2ms;
+    background-color: rgb(137, 202, 245);
+}
+
+#apply-filter:hover {
+    background-color: rgb(91, 175, 231);
+    cursor: pointer;
 }
 
 .colors, .sizes {
@@ -506,60 +591,20 @@ label {
     height: 50px;
 }
 
+.button-add-to-cart, .button-buy-product{
+    transition: background-color 0.2ms;
+    background-color: rgb(137, 202, 245);
+}
+
+.button-add-to-cart:hover, .button-buy-product:hover {
+    background-color: rgb(91, 175, 231);
+    cursor: pointer;
+}
+
 .clothe-specs {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-/*** HOME CARROUSEL ***/
-
-.carrousel-container {
-    margin-bottom: 100px;
-    gap: 10px;
-    align-items: center;
-}
-
-.carrousel-list {
-    display: flex;
-    width: 100%;
-    height: auto;
-    overflow-x: auto;
-    scrollbar-width: none;
-    gap: 10px;
-}
-
-.clothe-card-home {
-    display: flex;
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    flex-wrap: wrap;
-    border-radius: 10px 10px 10px 10px;
-    gap: 10px;
-    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.25);
-    background-color: rgb(255, 255, 255);
-}
-
-.clothe-card-home img {
-    width: 150px;
-    border-radius: 10px;
-    height: 100px;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-}
-
-.clothe-card-home .clothe-card-name {
-    font-size: 12px;
-}
-
-.clothe-card-home .clothe-card-price {
-    font-size: 12px;
-}
-
-#prev-slider, #next-slider, #prev-slider img, #next-slider img {
-    width: 30px;
-    height: 50px;
 }
 
 /***** Formularios para hacer inserciones y modificaciones a los productos *****/
@@ -705,7 +750,13 @@ label {
     height: 50px;
 }
 
+button {
+    transition: background-color 0.2ms;
+    background-color: rgb(137, 202, 245);
+}
+
 button:hover {
+    background-color: rgb(91, 175, 231);
     cursor: pointer;
 }
 

@@ -91,7 +91,7 @@ const queries = {
             if(invalidData.has(data)) return res.send(window.location.reload());
 
             let products = await Clothes.findAll({
-                attributes: ["id", "clothe_name", "price", "url"],
+                attributes: ["id", "clothe_name", "price", "url", "on_sale", "discount"],
                 where: {
                     [Op.or]: data.map(word => ({
                         clothe_name: {
@@ -102,8 +102,9 @@ const queries = {
             });
 
             products = products.map(clohte => clohte.dataValues);
+            const amountLabelForPagination = 0;
 
-            return res.render("products", {allProducts:products, authorized:req.params.authorized, type:"Productos", sizes:[], colors:[]});
+            return res.render("products", {allProducts:products, amountLabelForPagination, authorized:req.params.authorized, type:"Productos", sizes:[], colors:[]});
         },
 
         clothe: async function(req, res){
@@ -126,7 +127,7 @@ const queries = {
                         attributes: ["size"]
                     }
                 ],
-                attributes: ["id", "clothe_name", "price", "url"],
+                attributes: ["id", "clothe_name", "price", "url", "on_sale", "discount"],
                 where: {
                     id: clotheId
                 }
@@ -177,7 +178,7 @@ const queries = {
                             attributes: ["size"]
                         }
                     ],
-                    attributes: ["id", "clothe_name", "price", "url"],
+                    attributes: ["id", "clothe_name", "price", "url", "on_sale", "discount"],
                     where: {
                         type_id: type.id
                     },
@@ -231,7 +232,7 @@ const queries = {
                             attributes: ["size"]
                         }
                     ],
-                    attributes: ["id", "clothe_name", "price", "url"],
+                    attributes: ["id", "clothe_name", "price", "url", "on_sale", "discount"],
                     where: {
                         type_id: type.id
                     },
