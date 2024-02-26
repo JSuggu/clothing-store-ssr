@@ -12,15 +12,6 @@ if(process.env.NODE_ENV == "development"){
         define: {timestamps: false},
         dialectOptions: {multipleStatements: true}
     });
-} else if(process.env.NODE_ENV == "production"){
-    sequelize = new Sequelize(data.DB_DATABASE, data.DB_USER, data.DB_PASSWORD, {
-        host: data.DB_HOST,
-        port: data.DB_PORT,
-        dialect: "postgres",
-        storage: "./session.postgres",
-        define: {timestamps: false},
-        dialectOptions: {multipleStatements: true}
-    });
 } else {
     sequelize = new Sequelize(process.env.DB_URI, {
         dialect: "postgres",
